@@ -1,11 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Huerto Hogar</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    
+
+  <header>
+    <h1>Huerto Hogar</h1>
+    <p>Tu tienda de cultivo en casa</p>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="productos.html">Productos</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="blog.html">Blog</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="carrito.html">Carrito</a>
+      <a href="login.html">Iniciar Sesión</a>
+      <a href="registro.html">Registrarse</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="contenedor-productos">
+      <h2>Catálogo de Productos</h2>
+      
+      <div id="catalogo">
+        <div class="producto">
+          <h3>Semillas de Tomate</h3>
+          <p>Precio: $<span class="precio">3500</span></p>
+          <button class="btn-agregar" onclick="agregarAlCarrito('Semillas de Tomate', 3500)">Agregar al Carrito</button>
+        </div>
+
+        <div class="producto">
+          <h3>Sustrato Orgánico 5L</h3>
+          <p>Precio: $<span class="precio">5900</span></p>
+          <button class="btn-agregar" onclick="agregarAlCarrito('Sustrato Orgánico 5L', 5900)">Agregar al Carrito</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="contenedor-carrito">
+      <h2>Carrito de Compras</h2>
+      
+      <table id="tabla-carrito">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody id="items-carrito">
+        </tbody>
+      </table>
+
+      <div class="resumen-carrito">
+        <h3>Total: $<span id="total-pago">0</span></h3>
+        <button id="btn-vaciar">Vaciar Carrito</button>
+        <button id="btn-comprar">Finalizar Compra</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/productos.js"></script>
+  <script src="js/carrito.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/regiones.js"></script>
+  <script src="js/validaciones.js"></script>
 </body>
 </html>
