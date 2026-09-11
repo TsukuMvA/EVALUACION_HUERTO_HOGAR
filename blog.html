@@ -1,11 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog | HuertoHogar</title><link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    
-</body>
-</html>
+<header class="site-header"><div class="contenedor header-inner"><a class="logo" href="index.html">HuertoHogar</a><nav><a href="index.html">Inicio</a><a href="productos.html">Productos</a><a href="pedidos.html">Mis pedidos</a><a href="blog.html" class="activo">Blog</a><a href="nosotros.html">Nosotros</a><a href="carrito.html">🛒 Carrito <span id="contador-carrito">0</span></a></nav></div></header>
+<main>
+<section class="hero-productos"><div class="contenedor"><span class="eyebrow">Aprende y disfruta</span><h1>Blog HuertoHogar</h1><p>Consejos prácticos sobre alimentación saludable, productos del campo y sostenibilidad para tomar mejores decisiones en tu día a día.</p></div></section>
+<section class="seccion"><div class="contenedor"><div class="blog-grid">
+<article class="blog-card"><div class="blog-icono">🥕</div><span class="etiqueta">Alimentación saludable</span><h2>Cómo incorporar más verduras a tu alimentación</h2><p>Ideas sencillas para aprovechar verduras frescas en ensaladas, guisos, acompañamientos y preparaciones rápidas.</p><a class="btn-secundario" href="detalle-blog.html?articulo=verduras">Leer artículo</a></article>
+<article class="blog-card"><div class="blog-icono">🍎</div><span class="etiqueta">Alimentación saludable</span><h2>Frutas de temporada: sabor y frescura</h2><p>Conoce algunas formas de disfrutar frutas frescas y convertirlas en colaciones, postres y smoothies.</p><a class="btn-secundario" href="detalle-blog.html?articulo=frutas">Leer artículo</a></article>
+<article class="blog-card"><div class="blog-icono">🌱</div><span class="etiqueta">Sostenibilidad</span><h2>Comprar local y apoyar al campo</h2><p>Descubre cómo elegir productos locales puede fortalecer la relación entre consumidores, agricultores y comunidades.</p><a class="btn-secundario" href="detalle-blog.html?articulo=local">Leer artículo</a></article>
+<article class="blog-card"><div class="blog-icono">♻️</div><span class="etiqueta">Sostenibilidad</span><h2>Pequeños hábitos para una cocina más sostenible</h2><p>Consejos para reducir desperdicios, aprovechar mejor los alimentos y consumir de manera más consciente.</p><a class="btn-secundario" href="detalle-blog.html?articulo=sostenible">Leer artículo</a></article>
+</div></div></section>
+</main><footer class="site-footer"><div class="contenedor footer-grid"><div><h2>HuertoHogar</h2><p>Del campo a tu hogar, promoviendo una alimentación saludable y sostenible.</p></div><div><h3>Explora</h3><p><a href="productos.html">Productos</a></p><p><a href="blog.html">Blog</a></p></div><div><h3>Cuenta</h3><p><a href="perfil.html">Mi perfil</a></p><p><a href="pedidos.html">Mis pedidos</a></p></div></div></footer>
+<script src="js/carrito.js"></script><script>if(typeof actualizarContadorCarrito==='function') actualizarContadorCarrito();</script>
+</body></html>

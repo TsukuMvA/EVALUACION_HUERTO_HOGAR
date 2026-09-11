@@ -1,11 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle de producto | HuertoHogar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="index.html">HuertoHogar</a>
+    <nav aria-label="Navegación principal">
+      <a href="index.html">Inicio</a><a href="productos.html">Productos</a><a href="pedidos.html">Pedidos</a><a href="perfil.html">Mi perfil</a><a href="carrito.html">Carrito <span id="contador-carrito">0</span></a>
+    </nav>
+  </div>
+</header>
+<main class="container detalle-page">
+  <a href="productos.html" class="btn-secundario">← Volver al catálogo</a>
+  <section id="detalle-producto" class="detalle-producto-card" aria-live="polite"></section>
+  <section class="reseñas-section">
+    <div class="section-heading"><div><p class="eyebrow">Experiencias de nuestros clientes</p><h2>Reseñas y calificaciones</h2></div><div id="resumen-calificacion"></div></div>
+    <div id="lista-reseñas" class="lista-reseñas"></div>
+    <form id="form-reseña" class="form-reseña">
+      <h3>Comparte tu experiencia</h3>
+      <div class="campo"><label for="nombre-reseña">Nombre</label><input id="nombre-reseña" required maxlength="60"></div>
+      <div class="campo"><label for="calificacion">Calificación</label><select id="calificacion" required><option value="">Selecciona una calificación</option><option value="5">★★★★★ — Excelente</option><option value="4">★★★★☆ — Muy bueno</option><option value="3">★★★☆☆ — Bueno</option><option value="2">★★☆☆☆ — Regular</option><option value="1">★☆☆☆☆ — Malo</option></select></div>
+      <div class="campo"><label for="comentario">Comentario</label><textarea id="comentario" rows="4" maxlength="500" required placeholder="¿Qué te pareció este producto?"></textarea></div>
+      <button class="btn-agregar" type="submit">Publicar reseña</button><p id="mensaje-reseña" class="mensaje" role="status"></p>
+    </form>
+  </section>
+</main>
+<footer class="site-footer"><div class="container"><p>HuertoHogar · Productos frescos y orgánicos</p></div></footer>
+<script src="js/productos.js"></script>
+<script src="js/reseñas.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const codigo = new URLSearchParams(location.search).get('codigo');
+  const producto = productos.find(p => p.codigo === codigo) || productos[0];
+  renderizarDetalleProducto(producto);
+  prepararReseñas(producto);
+  const contador = document.getElementById('contador-carrito');
+  const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+  if (contador) contador.textContent = carrito.reduce((s,p)=>s + Number(p.cantidad || 0), 0);
+});
+</script>
 </body>
 </html>

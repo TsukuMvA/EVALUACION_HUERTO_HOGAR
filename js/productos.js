@@ -6,6 +6,7 @@ const productos = [
     precio: 1200,
     unidad: "kilo",
     stock: 150,
+    origen: "Valle del Maule",
     descripcion: "Manzanas Fuji crujientes y dulces, cultivadas en el Valle del Maule."
   },
   {
@@ -33,6 +34,7 @@ const productos = [
     precio: 900,
     unidad: "kilo",
     stock: 100,
+    origen: "Región de O'Higgins",
     descripcion: "Zanahorias crujientes cultivadas sin pesticidas en la Región de O'Higgins."
   },
   {
@@ -42,6 +44,7 @@ const productos = [
     precio: 700,
     unidad: "bolsa de 500g",
     stock: 80,
+    origen: "Información no especificada en el documento.",
     descripcion: "Espinacas frescas y nutritivas, perfectas para ensaladas y batidos."
   },
   {
@@ -60,6 +63,7 @@ const productos = [
     precio: 5000,
     unidad: "frasco de 500g",
     stock: 50,
+    origen: "Producida por apicultores locales.",
     descripcion: "Miel pura y orgánica producida por apicultores locales."
   },
   {
@@ -78,6 +82,7 @@ const productos = [
     precio: 1100,
     unidad: "litro",
     stock: 90,
+    origen: "Granjas locales.",
     descripcion: "Leche fresca proveniente de granjas locales."
   }
 ];

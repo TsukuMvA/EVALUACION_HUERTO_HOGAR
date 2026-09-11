@@ -1,11 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito | HuertoHogar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    
+  <header class="site-header">
+    <div class="contenedor nav-principal">
+      <a class="logo" href="index.html">HuertoHogar</a>
+      <nav aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <a href="productos.html">Productos</a>
+        <a href="perfil.html">Mi Perfil</a>
+        <a href="carrito.html" aria-current="page">🛒 Carrito <span id="contador-carrito">0</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-productos">
+      <div class="contenedor">
+        <span class="etiqueta">TU COMPRA</span>
+        <h1>Carrito de compras</h1>
+        <p>Revisa tus productos, modifica las cantidades y consulta el detalle de precios antes de finalizar tu compra.</p>
+      </div>
+    </section>
+
+    <section class="carrito-seccion">
+      <div class="contenedor">
+        <div id="mensaje-carrito" class="mensaje" role="status" aria-live="polite"></div>
+
+        <div id="carrito-vacio" class="carrito-vacio" hidden>
+          <div class="carrito-vacio-icono">🛒</div>
+          <h2>Tu carrito está vacío</h2>
+          <p>Agrega productos desde nuestro catálogo para comenzar tu compra.</p>
+          <a class="btn-agregar" href="productos.html">Ver catálogo</a>
+        </div>
+
+        <div id="carrito-contenido" class="carrito-layout" hidden>
+          <div class="tabla-contenedor">
+            <div class="carrito-encabezado">
+              <h2>Productos seleccionados</h2>
+              <button id="btn-vaciar" class="btn-secundario btn-peligro" type="button">Vaciar carrito</button>
+            </div>
+            <div class="tabla-scroll">
+              <table class="tabla-carrito">
+                <thead>
+                  <tr>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Subtotal</th>
+                    <th scope="col"><span class="solo-lector">Acciones</span></th>
+                  </tr>
+                </thead>
+                <tbody id="items-carrito"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <aside class="resumen-carrito" aria-label="Resumen de compra">
+            <h2>Resumen</h2>
+            <div class="resumen-linea"><span>Productos</span><strong id="cantidad-resumen">0</strong></div>
+            <div class="resumen-linea"><span>Subtotal</span><strong id="subtotal-pago">$0</strong></div>
+            <div class="resumen-linea"><span>Envío</span><strong>Por calcular</strong></div>
+            <div class="resumen-total"><span>Total productos</span><strong id="total-pago">$0</strong></div>
+            <button id="btn-comprar" class="btn-agregar btn-comprar" type="button">Finalizar compra</button>
+            <a class="seguir-comprando" href="productos.html">← Seguir comprando</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 HuertoHogar · Productos frescos y de origen local</p>
+  </footer>
+
+  <script src="js/productos.js"></script>
+  <script src="js/carrito.js"></script>
 </body>
 </html>
