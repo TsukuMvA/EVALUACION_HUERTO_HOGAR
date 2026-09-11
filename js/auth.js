@@ -54,8 +54,10 @@ async function registrarUsuario(evento) {
   const password = document.getElementById('password').value;
   const region = document.getElementById('select-region').value;
   const comuna = document.getElementById('select-comuna').value;
+  const direccion = document.getElementById('direccion')?.value.trim() || '';
+  const telefono = document.getElementById('telefono')?.value.trim() || '';
 
-  if (!nombre || !rut || !email || !password || !region || !comuna) {
+  if (!nombre || !rut || !email || !password || !region || !comuna || !direccion || !telefono) {
     mostrarMensaje(mensaje, 'Completa todos los campos obligatorios.');
     return;
   }
@@ -91,6 +93,8 @@ async function registrarUsuario(evento) {
     passwordHash,
     region,
     comuna,
+    direccion,
+    telefono,
     creadoEn: new Date().toISOString()
   });
 
@@ -141,6 +145,26 @@ async function iniciarSesion(evento) {
   setTimeout(() => {
     window.location.href = 'index.html';
   }, 900);
+}
+
+
+function guardarPerfil(evento) {
+  evento.preventDefault();
+  const sesion = obtenerSesion();
+  if (!sesion) return;
+  const usuarios = obtenerUsuarios();
+  const usuario = usuarios.find(u => u.id === sesion.usuarioId);
+  if (!usuario) return;
+  usuario.nombre = document.getElementById('perfil-nombre').value.trim();
+  usuario.email = document.getElementById('perfil-email').value.trim().toLowerCase();
+  usuario.direccion = document.getElementById('perfil-direccion').value.trim();
+  usuario.telefono = document.getElementById('perfil-telefono').value.trim();
+  usuario.region = document.getElementById('perfil-region').value;
+  usuario.comuna = document.getElementById('perfil-comuna').value;
+  guardarUsuarios(usuarios);
+  localStorage.setItem(CLAVE_SESION, JSON.stringify({...sesion, nombre: usuario.nombre, email: usuario.email}));
+  const mensaje = document.getElementById('mensaje-perfil');
+  mostrarMensaje(mensaje, 'Perfil actualizado correctamente.', 'exito');
 }
 
 function cerrarSesion() {

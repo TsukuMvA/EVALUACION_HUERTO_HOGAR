@@ -13,7 +13,7 @@ const regionesYComunas = [
   }
 ];
 
-function cargarRegiones(selectRegionId, selectComunaId) {
+function cargarRegiones(selectRegionId, selectComunaId, regionInicial = '', comunaInicial = '') {
   const selectRegion = document.getElementById(selectRegionId);
   const selectComuna = document.getElementById(selectComunaId);
 
@@ -27,10 +27,9 @@ function cargarRegiones(selectRegionId, selectComunaId) {
     selectRegion.appendChild(opt);
   });
 
-  selectRegion.addEventListener('change', () => {
+  const seleccionarComuna = (comunaInicialActual = '') => {
     const regionSeleccionada = selectRegion.value;
     selectComuna.innerHTML = '<option value="">Seleccione Comuna</option>';
-
     const encontrada = regionesYComunas.find(r => r.region === regionSeleccionada);
     if (encontrada) {
       encontrada.comunas.forEach(comuna => {
@@ -39,6 +38,19 @@ function cargarRegiones(selectRegionId, selectComunaId) {
         opt.textContent = comuna;
         selectComuna.appendChild(opt);
       });
+      if (comunaInicialActual) selectComuna.value = comunaInicialActual;
     }
+  };
+
+  selectRegion.addEventListener('change', () => {
+    const regionSeleccionada = selectRegion.value;
+    selectComuna.innerHTML = '<option value="">Seleccione Comuna</option>';
+
+    seleccionarComuna();
   });
+
+  if (regionInicial) {
+    selectRegion.value = regionInicial;
+    seleccionarComuna(comunaInicial);
+  }
 }

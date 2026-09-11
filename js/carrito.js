@@ -146,17 +146,14 @@ if (btnComprar) {
       mostrarMensaje('El carrito está vacío. Agrega productos antes de comprar.', 'error');
       return;
     }
-    const pedidosGuardados = JSON.parse(localStorage.getItem('huertohogar_pedidos') || '[]');
     const sesion = JSON.parse(localStorage.getItem('huertohogar_sesion') || 'null');
-    const total = carrito.reduce((sum, p) => sum + p.precio * p.cantidad, 0);
-    const pedido = { id: `HH-${Date.now().toString().slice(-8)}`, fecha: new Date().toISOString(), estado: 'Confirmado', cliente: sesion ? { nombre: sesion.nombre, email: sesion.email } : { nombre: 'Cliente invitado', email: '' }, productos: carrito.map(p => ({ codigo:p.codigo, nombre:p.nombre, precio:p.precio, cantidad:p.cantidad, unidad:p.unidad, subtotal:p.precio*p.cantidad })), total, notificaciones: ['Pedido recibido correctamente.', 'Tu pedido ha sido confirmado y está en preparación.'] };
-    pedidosGuardados.unshift(pedido);
-    localStorage.setItem('huertohogar_pedidos', JSON.stringify(pedidosGuardados));
-    carrito = [];
-    guardarCarrito();
-    renderizarCarrito();
-    mostrarMensaje('Pedido confirmado correctamente.', 'exito');
-    setTimeout(() => { window.location.href = 'pedidos.html'; }, 700);
+    if (!sesion) {
+      mostrarMensaje('Debes iniciar sesión antes de confirmar el pedido.', 'error');
+      setTimeout(() => { window.location.href = 'login.html'; }, 700);
+      return;
+    }
+    localStorage.setItem('huertohogar_checkout_carrito', JSON.stringify(carrito));
+    window.location.href = 'envio.html';
   });
 }
 

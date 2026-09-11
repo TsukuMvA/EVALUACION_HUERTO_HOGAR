@@ -41,7 +41,7 @@ function renderizarPedidos() {
     <article class="pedido-card">
       <div class="pedido-cabecera"><div><span class="codigo-pedido">${pedido.id}</span><h2>Pedido ${pedido.id}</h2><p>Realizado el ${fecha(pedido.fecha)}</p></div><span class="estado-pedido ${estadoClase(pedido.estado)}">${pedido.estado}</span></div>
       <div class="pedido-cuerpo"><div><h3>Detalle de productos</h3><ul class="pedido-productos">${pedido.productos.map(p=>`<li><span>${p.nombre} × ${p.cantidad}</span><strong>${precio(p.subtotal)}</strong></li>`).join('')}</ul></div><aside class="pedido-total"><span>Total</span><strong>${precio(pedido.total)}</strong></aside></div>
-      <div class="notificaciones-pedido"><h3>Estado y notificaciones</h3>${pedido.notificaciones.map(n=>`<p>✓ ${n}</p>`).join('')}</div>
+      <div class="notificaciones-pedido"><h3>Estado y notificaciones</h3>${pedido.notificaciones.map(n=>`<p>✓ ${n}</p>`).join('')}</div>${pedido.envio ? `<div class="notificaciones-pedido"><h3>Despacho y seguimiento</h3><p><strong>Entrega:</strong> ${pedido.envio.fechaPreferida} · ${pedido.envio.horario}</p><p><strong>Dirección:</strong> ${pedido.envio.direccion}, ${pedido.envio.comuna}, ${pedido.envio.region}</p><p><strong>Seguimiento:</strong> ${pedido.seguimiento?.estado || 'Pedido confirmado'}</p></div>` : ''}
       <details class="comprobante-pedido"><summary>Ver comprobante</summary><div><p><strong>HuertoHogar</strong></p><p>Pedido: ${pedido.id}</p><p>Cliente: ${pedido.cliente.nombre}</p><p>Fecha: ${fecha(pedido.fecha)}</p><p>Total: <strong>${precio(pedido.total)}</strong></p></div><button class="btn-secundario" type="button" onclick="imprimirComprobante('${pedido.id}')">Imprimir comprobante</button></details>
     </article>`).join('');
 }

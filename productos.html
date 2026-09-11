@@ -37,10 +37,10 @@
 
     <section class="seccion catalogo-seccion">
       <div class="contenedor">
-        <div class="filtros-productos" aria-label="Filtros del catálogo">
-          <div class="campo-busqueda">
+        <div class="filtros-productos filtros-avanzados" aria-label="Búsqueda y filtros avanzados">
+          <div class="campo-busqueda filtro-amplio">
             <label for="buscar-producto">Buscar producto</label>
-            <input type="search" id="buscar-producto" placeholder="Ej.: manzanas, miel..." autocomplete="off">
+            <input type="search" id="buscar-producto" placeholder="Nombre, código, descripción u origen..." autocomplete="off">
           </div>
           <div>
             <label for="filtro-categoria">Categoría</label>
@@ -52,7 +52,38 @@
               <option value="Productos Lácteos">Productos Lácteos</option>
             </select>
           </div>
+          <div>
+            <label for="filtro-disponibilidad">Disponibilidad</label>
+            <select id="filtro-disponibilidad">
+              <option value="Todas">Todos</option>
+              <option value="Disponible">Con stock</option>
+              <option value="Agotado">Agotados</option>
+            </select>
+          </div>
+          <div>
+            <label for="precio-min">Precio mínimo</label>
+            <input type="number" id="precio-min" min="0" step="100" placeholder="$0">
+          </div>
+          <div>
+            <label for="precio-max">Precio máximo</label>
+            <input type="number" id="precio-max" min="0" step="100" placeholder="Sin límite">
+          </div>
+          <div>
+            <label for="ordenar-productos">Ordenar por</label>
+            <select id="ordenar-productos">
+              <option value="relevancia">Relevancia</option>
+              <option value="nombre-asc">Nombre: A-Z</option>
+              <option value="nombre-desc">Nombre: Z-A</option>
+              <option value="precio-asc">Precio: menor a mayor</option>
+              <option value="precio-desc">Precio: mayor a menor</option>
+              <option value="stock-desc">Mayor disponibilidad</option>
+            </select>
+          </div>
           <button type="button" class="btn-secundario" id="limpiar-filtros">Limpiar filtros</button>
+        </div>
+        <div class="filtros-resumen" aria-live="polite">
+          <span>🔎 Búsqueda avanzada activa</span>
+          <span id="resumen-filtros">Mostrando todos los productos</span>
         </div>
 
         <p id="resultado-catalogo" class="resultado-catalogo" aria-live="polite"></p>
@@ -85,6 +116,6 @@
 
   <script src="js/productos.js"></script>
   <script src="js/carrito.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/main.js"></script><script src="js/compartir.js"></script>
 </body>
 </html>
