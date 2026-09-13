@@ -1,33 +1,230 @@
 <!doctype html>
 <html lang="es">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mi perfil | HuertoHogar</title><link rel="stylesheet" href="css/styles.css"></head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mi perfil | HuertoHogar</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
 <body>
-<header class="site-header"><div class="contenedor nav-principal"><a class="logo" href="index.html">🌱 HuertoHogar</a><nav aria-label="Navegación principal"><a href="index.html">Inicio</a><a href="productos.html">Productos</a><a href="pedidos.html">Pedidos</a><a href="blog.html">Blog</a><a href="nosotros.html">Nosotros</a><a href="fidelizacion.html">Fidelización</a><a href="carrito.html">🛒 Carrito <span id="contador-carrito">0</span></a></nav></div></header>
+<header class="site-header">
+  <div class="contenedor nav-principal">
+    <a class="logo" href="index.html">🌱 HuertoHogar</a>
+    <nav aria-label="Navegación principal">
+      <a href="index.html">Inicio</a>
+      <a href="productos.html">Productos</a>
+      <a href="pedidos.html">Pedidos</a>
+      <a href="blog.html">Blog</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="fidelizacion.html">Fidelización</a>
+      <a href="carrito.html">🛒 Carrito <span id="contador-carrito">0</span></a>
+    </nav>
+  </div>
+</header>
+
 <main>
-<section class="hero-productos"><div class="contenedor"><span class="etiqueta">MI CUENTA</span><h1>Mi perfil</h1><p>Administra tus datos y descubre recomendaciones basadas en tus compras.</p></div></section>
-<section class="seccion"><div class="contenedor perfil-grid">
-<article class="tarjeta perfil-datos"><h2>Información personal</h2><div id="mensaje-perfil" class="mensaje" role="alert" aria-live="polite"></div><form id="form-perfil" onsubmit="guardarPerfil(event)"><label for="perfil-nombre">Nombre</label><input id="perfil-nombre" required><label for="perfil-email">Correo</label><input id="perfil-email" type="email" required><label for="perfil-direccion">Dirección de entrega</label><input id="perfil-direccion" maxlength="160" placeholder="Calle y número"><div class="form-grid-2"><div><label for="perfil-region">Región</label><select id="perfil-region"></select></div><div><label for="perfil-comuna">Comuna</label><select id="perfil-comuna"></select></div></div><label for="perfil-telefono">Teléfono de contacto</label><input id="perfil-telefono" type="tel" maxlength="20" placeholder="+56 9 1234 5678"><button class="btn-agregar" type="submit">Guardar cambios</button></form><button class="btn-secundario" type="button" onclick="cerrarSesion()">Cerrar sesión</button></article>
-<article class="tarjeta"><h2>Historial de compras</h2><div id="historial-compras"></div></article>
-</div></section>
-<section class="seccion"><div class="contenedor"><div class="section-heading"><div><p class="eyebrow">Para ti</p><h2>Recomendaciones personalizadas</h2></div></div><p class="texto-secundario">Sugerencias generadas a partir de las categorías de tus pedidos. Si aún no tienes compras, mostramos productos populares.</p><div id="recomendaciones" class="grid-productos"></div></div></section>
+  <section class="hero-productos">
+    <div class="contenedor">
+      <span class="etiqueta">MI CUENTA</span>
+      <h1>Mi perfil</h1>
+      <p>Administra tus datos y descubre recomendaciones basadas en tus compras.</p>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="contenedor perfil-grid">
+      <article class="tarjeta perfil-datos">
+        <h2>Información personal</h2>
+        <div id="mensaje-perfil" class="mensaje" role="alert" aria-live="polite"></div>
+        <form id="form-perfil">
+          <label for="perfil-nombre">Nombre</label>
+          <input id="perfil-nombre" required>
+          
+          <label for="perfil-email">Correo</label>
+          <input id="perfil-email" type="email" required readonly>
+          
+          <label for="perfil-direccion">Dirección de entrega</label>
+          <input id="perfil-direccion" maxlength="160" placeholder="Calle y número">
+          
+          <div class="form-grid-2">
+            <div>
+              <label for="perfil-region">Región</label>
+              <select id="perfil-region"></select>
+            </div>
+            <div>
+              <label for="perfil-comuna">Comuna</label>
+              <select id="perfil-comuna"></select>
+            </div>
+          </div>
+          
+          <label for="perfil-telefono">Teléfono de contacto</label>
+          <input id="perfil-telefono" type="tel" maxlength="20" placeholder="+56 9 1234 5678">
+          
+          <button class="btn-agregar" type="submit">Guardar cambios</button>
+        </form>
+        <button class="btn-secundario" type="button" onclick="cerrarSesion()">Cerrar sesión</button>
+      </article>
+
+      <article class="tarjeta">
+        <h2>Historial de compras</h2>
+        <div id="historial-compras"></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="contenedor">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Para ti</p>
+          <h2>Recomendaciones personalizadas</h2>
+        </div>
+      </div>
+      <p class="texto-secundario">Sugerencias generadas a partir de las categorías de tus pedidos. Si aún no tienes compras, mostramos productos populares.</p>
+      <div id="recomendaciones" class="grid-productos"></div>
+    </div>
+  </section>
 </main>
-<footer class="site-footer"><div class="contenedor footer-grid"><div><h2>HuertoHogar</h2><p>Del campo a tu hogar, promoviendo una alimentación saludable y sostenible.</p></div><div><h3>Cuenta</h3><p><a href="perfil.html">Mi perfil</a></p><p><a href="pedidos.html">Mis pedidos</a></p></div></div></footer>
-<script src="js/auth.js"></script><script src="js/regiones.js"></script><script src="js/productos.js"></script><script src="js/pedidos.js"></script><script src="js/carrito.js"></script>
+
+<footer class="site-footer">
+  <div class="contenedor footer-grid">
+    <div>
+      <h2>HuertoHogar</h2>
+      <p>Del campo a tu hogar, promoviendo una alimentación saludable y sostenible.</p>
+    </div>
+    <div>
+      <h3>Cuenta</h3>
+      <p><a href="perfil.html">Mi perfil</a></p>
+      <p><a href="pedidos.html">Mis pedidos</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/auth.js"></script>
+<script src="js/regiones.js"></script>
+<script src="js/productos.js"></script>
+<script src="js/pedidos.js"></script>
+<script src="js/carrito.js"></script>
+
 <script>
-(function(){
- const sesion=obtenerSesion(); if(!sesion){location.href='login.html';return;}
- const pedidos=obtenerPedidos().filter(p=>!p.cliente?.email||p.cliente.email===sesion.email);
- const usuarios=obtenerUsuarios(); const usuario=usuarios.find(u=>u.id===sesion.usuarioId)||sesion; document.getElementById('perfil-nombre').value=usuario.nombre||''; document.getElementById('perfil-email').value=usuario.email||''; document.getElementById('perfil-direccion').value=usuario.direccion||''; document.getElementById('perfil-telefono').value=usuario.telefono||''; cargarRegiones('perfil-region','perfil-comuna',usuario.region||'',usuario.comuna||'');
- const hist=document.getElementById('historial-compras');
- hist.innerHTML=pedidos.length?pedidos.slice(0,6).map(p=>`<div class="historial-item"><strong>${esc(p.id)}</strong><span>${new Intl.DateTimeFormat('es-CL',{dateStyle:'medium'}).format(new Date(p.fecha))}</span><b>${new Intl.NumberFormat('es-CL',{style:'currency',currency:'CLP',maximumFractionDigits:0}).format(p.total)}</b></div>`).join(''):'<p class="texto-secundario">Aún no tienes compras registradas.</p>';
- const categorias={}; pedidos.flatMap(p=>p.productos||[]).forEach(item=>{const prod=productos.find(x=>x.codigo===item.codigo);if(prod)categorias[prod.categoria]=(categorias[prod.categoria]||0)+item.cantidad;});
- const preferidas=Object.entries(categorias).sort((a,b)=>b[1]-a[1]).map(x=>x[0]);
- let rec=productos.filter(p=>preferidas.includes(p.categoria)).sort((a,b)=>(categorias[b.categoria]||0)-(categorias[a.categoria]||0));
- if(rec.length<4) rec=rec.concat(productos.filter(p=>!rec.includes(p)).sort((a,b)=>b.stock-a.stock)); rec=rec.slice(0,4);
- document.getElementById('recomendaciones').innerHTML=rec.map(p=>`<article class="producto-card"><div class="producto-imagen">${icono(p.categoria)}</div><span class="producto-codigo">${p.codigo}</span><h3>${esc(p.nombre)}</h3><p>${esc(p.descripcion)}</p><strong>${precio(p.precio)} / ${esc(p.unidad)}</strong><div class="producto-acciones"><a class="btn-secundario" href="detalle-producto.html?codigo=${encodeURIComponent(p.codigo)}">Ver detalle</a><button class="btn-agregar" onclick="agregarAlCarrito('${p.codigo}')">Agregar</button></div></article>`).join('');
- function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
- function precio(v){return new Intl.NumberFormat('es-CL',{style:'currency',currency:'CLP',maximumFractionDigits:0}).format(v);}
- function icono(c){return c==='Frutas Frescas'?'🍎':c==='Verduras Orgánicas'?'🥬':c==='Productos Lácteos'?'🥛':'🍯';}
+(function() {
+  const sesion = obtenerSesion();
+  if (!sesion) {
+    location.href = 'login.html';
+    return;
+  }
+
+  // Carga e inicialización de usuario
+  const usuarios = obtenerUsuarios();
+  const usuario = usuarios.find(u => u.id === sesion.usuarioId) || sesion;
+
+  document.getElementById('perfil-nombre').value = usuario.nombre || '';
+  document.getElementById('perfil-email').value = usuario.email || '';
+  document.getElementById('perfil-direccion').value = usuario.direccion || '';
+  document.getElementById('perfil-telefono').value = usuario.telefono || '';
+  
+  if (typeof cargarRegiones === 'function') {
+    cargarRegiones('perfil-region', 'perfil-comuna', usuario.region || '', usuario.comuna || '');
+  }
+
+  // Manejo del formulario guardarPerfil
+  document.getElementById('form-perfil').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const mensaje = document.getElementById('mensaje-perfil');
+    try {
+      usuario.nombre = document.getElementById('perfil-nombre').value.trim();
+      usuario.direccion = document.getElementById('perfil-direccion').value.trim();
+      usuario.region = document.getElementById('perfil-region').value;
+      usuario.comuna = document.getElementById('perfil-comuna').value;
+      usuario.telefono = document.getElementById('perfil-telefono').value.trim();
+
+      if (typeof guardarUsuario === 'function') {
+        guardarUsuario(usuario);
+      }
+      mensaje.textContent = 'Perfil actualizado con éxito.';
+      mensaje.className = 'mensaje mensaje-exito';
+    } catch (err) {
+      mensaje.textContent = 'Error al guardar los datos.';
+      mensaje.className = 'mensaje mensaje-error';
+    }
+  });
+
+  // Render Historial de Compras
+  const pedidos = obtenerPedidos().filter(p => !p.cliente?.email || p.cliente.email === sesion.email);
+  const hist = document.getElementById('historial-compras');
+
+  hist.innerHTML = pedidos.length 
+    ? pedidos.slice(0, 6).map(p => `
+        <div class="historial-item">
+          <strong>${esc(p.id)}</strong>
+          <span>${new Intl.DateTimeFormat('es-CL', { dateStyle: 'medium' }).format(new Date(p.fecha))}</span>
+          <b>${precio(p.total)}</b>
+        </div>
+      `).join('')
+    : '<p class="texto-secundario">Aún no tienes compras registradas.</p>';
+
+  // Cálculo de Recomendaciones
+  const categorias = {};
+  pedidos.flatMap(p => p.productos || []).forEach(item => {
+    const prod = productos.find(x => x.codigo === item.codigo);
+    if (prod) categorias[prod.categoria] = (categorias[prod.categoria] || 0) + item.cantidad;
+  });
+
+  const preferidas = Object.entries(categorias)
+    .sort((a, b) => b[1] - a[1])
+    .map(x => x[0]);
+
+  let rec = productos
+    .filter(p => preferidas.includes(p.categoria))
+    .sort((a, b) => (categorias[b.categoria] || 0) - (categorias[a.categoria] || 0));
+
+  if (rec.length < 4) {
+    const faltantes = productos
+      .filter(p => !rec.some(r => r.codigo === p.codigo))
+      .sort((a, b) => (b.stock || 0) - (a.stock || 0));
+    rec = rec.concat(faltantes);
+  }
+  rec = rec.slice(0, 4);
+
+  // Render Recomendaciones con XSS prevenido
+  document.getElementById('recomendaciones').innerHTML = rec.map(p => `
+    <article class="producto-card">
+      <div class="producto-imagen">${icono(p.categoria)}</div>
+      <span class="producto-codigo">${esc(p.codigo)}</span>
+      <h3>${esc(p.nombre)}</h3>
+      <p>${esc(p.descripcion)}</p>
+      <strong>${precio(p.precio)} / ${esc(p.unidad)}</strong>
+      <div class="producto-acciones">
+        <a class="btn-secundario" href="detalle-producto.html?codigo=${encodeURIComponent(p.codigo)}">Ver detalle</a>
+        <button class="btn-agregar" onclick="agregarAlCarrito('${esc(p.codigo)}')">Agregar</button>
+      </div>
+    </article>
+  `).join('');
+
+  // Funciones Auxiliares
+  function esc(v) {
+    return String(v ?? '').replace(/[&<>"']/g, c => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    }[c]));
+  }
+
+  function precio(v) {
+    return new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 }).format(v || 0);
+  }
+
+  function icono(c) {
+    switch (c) {
+      case 'Frutas Frescas': return '🍎';
+      case 'Verduras Orgánicas': return '🥬';
+      case 'Productos Lácteos': return '🥛';
+      default: return '🍯';
+    }
+  }
 })();
 </script>
-</body></html>
+</body>
+</html>

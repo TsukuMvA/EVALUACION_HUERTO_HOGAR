@@ -118,5 +118,11 @@ function renderizarInformacionExtra(producto) {
 }
 
 function escapeHtmlProducto(texto) {
-  return String(texto).replace(/[&<>"']/g, caracter => ({"&":"&amp;","<":"&lt;",">":"&gt;","":"&quot;","'":"&#039;"}[caracter]));
+  return String(texto).replace(/[&<>"']/g, caracter => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;"
+  }[caracter]));
 }

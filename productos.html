@@ -5,12 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Catálogo de productos frescos y naturales de HuertoHogar.">
   <title>Productos | HuertoHogar</title>
+  
+  <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  
+  <!-- Estilos -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+
+  <!-- Encabezado / Navegación -->
   <header class="site-header">
     <div class="contenedor header-inner">
       <a class="logo" href="index.html">🌱 <span>HuertoHogar</span></a>
@@ -26,7 +32,9 @@
     </div>
   </header>
 
+  <!-- Contenido Principal -->
   <main>
+    <!-- Hero Section -->
     <section class="hero-productos">
       <div class="contenedor">
         <span class="etiqueta">DEL CAMPO A TU HOGAR</span>
@@ -35,13 +43,17 @@
       </div>
     </section>
 
+    <!-- Sección Catálogo y Filtros -->
     <section class="seccion catalogo-seccion">
       <div class="contenedor">
+        
+        <!-- Barra de Filtros -->
         <div class="filtros-productos filtros-avanzados" aria-label="Búsqueda y filtros avanzados">
           <div class="campo-busqueda filtro-amplio">
             <label for="buscar-producto">Buscar producto</label>
             <input type="search" id="buscar-producto" placeholder="Nombre, código, descripción u origen..." autocomplete="off">
           </div>
+          
           <div>
             <label for="filtro-categoria">Categoría</label>
             <select id="filtro-categoria">
@@ -52,6 +64,7 @@
               <option value="Productos Lácteos">Productos Lácteos</option>
             </select>
           </div>
+          
           <div>
             <label for="filtro-disponibilidad">Disponibilidad</label>
             <select id="filtro-disponibilidad">
@@ -60,14 +73,17 @@
               <option value="Agotado">Agotados</option>
             </select>
           </div>
+          
           <div>
             <label for="precio-min">Precio mínimo</label>
             <input type="number" id="precio-min" min="0" step="100" placeholder="$0">
           </div>
+          
           <div>
             <label for="precio-max">Precio máximo</label>
             <input type="number" id="precio-max" min="0" step="100" placeholder="Sin límite">
           </div>
+          
           <div>
             <label for="ordenar-productos">Ordenar por</label>
             <select id="ordenar-productos">
@@ -79,24 +95,32 @@
               <option value="stock-desc">Mayor disponibilidad</option>
             </select>
           </div>
+          
           <button type="button" class="btn-secundario" id="limpiar-filtros">Limpiar filtros</button>
         </div>
+
+        <!-- Resumen de Filtros Activos -->
         <div class="filtros-resumen" aria-live="polite">
           <span>🔎 Búsqueda avanzada activa</span>
           <span id="resumen-filtros">Mostrando todos los productos</span>
         </div>
 
+        <!-- Resultados -->
         <p id="resultado-catalogo" class="resultado-catalogo" aria-live="polite"></p>
         <div id="catalogo" class="grid-productos"></div>
+        
+        <!-- Estado sin resultados -->
         <div id="sin-resultados" class="sin-resultados" hidden>
           <span>🥕</span>
           <h2>No encontramos productos</h2>
           <p>Prueba con otra búsqueda o selecciona una categoría diferente.</p>
         </div>
+
       </div>
     </section>
   </main>
 
+  <!-- Pie de página -->
   <footer class="site-footer">
     <div class="contenedor footer-grid">
       <div>
@@ -114,8 +138,10 @@
     </div>
   </footer>
 
+  <!-- Scripts -->
   <script src="js/productos.js"></script>
   <script src="js/carrito.js"></script>
-  <script src="js/main.js"></script><script src="js/compartir.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/compartir.js"></script>
 </body>
 </html>

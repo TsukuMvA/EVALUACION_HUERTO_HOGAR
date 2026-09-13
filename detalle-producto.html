@@ -10,58 +10,118 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<header class="site-header">
-  <div class="container header-inner">
-    <a class="logo" href="index.html">HuertoHogar</a>
-    <nav aria-label="Navegación principal">
-      <a href="index.html">Inicio</a><a href="productos.html">Productos</a><a href="pedidos.html">Pedidos</a><a href="envio.html">Envío</a><a href="fidelizacion.html">Fidelización</a><a href="impacto.html">Impacto</a><a href="productos.html#catalogo">Compartir</a><a href="perfil.html">Mi perfil</a><a href="carrito.html">Carrito <span id="contador-carrito">0</span></a>
-    </nav>
-  </div>
-</header>
-<main class="container detalle-page">
-  <a href="productos.html" class="btn-secundario">← Volver al catálogo</a>
-  <section id="detalle-producto" class="detalle-producto-card" aria-live="polite"></section>
-  <section id="informacion-extra" class="info-extra-section" aria-labelledby="titulo-info-extra">
-    <div class="section-heading"><div><p class="eyebrow">Información extra</p><h2 id="titulo-info-extra">Conoce mejor este producto</h2><p class="texto-compartir">Información de sostenibilidad y una receta sugerida para aprovecharlo en casa.</p></div></div>
-    <div id="info-extra-contenido" class="info-extra-grid"></div>
-  </section>
-  <section class="compartir-section" aria-labelledby="titulo-compartir">
-    <div class="section-heading"><div><p class="eyebrow">Comparte y recomienda</p><h2 id="titulo-compartir">¿Te gustó este producto?</h2><p class="texto-compartir">Comparte este producto o una promoción de HuertoHogar con tus amigos.</p></div></div>
-    <div class="compartir-acciones">
-      <button class="btn-secundario btn-compartir" type="button" data-red="whatsapp">WhatsApp</button>
-      <button class="btn-secundario btn-compartir" type="button" data-red="facebook">Facebook</button>
-      <button class="btn-secundario btn-compartir" type="button" data-red="x">X</button>
-      <button class="btn-secundario btn-compartir" type="button" data-red="copiar">Copiar enlace</button>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">HuertoHogar</a>
+      <nav aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <a href="productos.html">Productos</a>
+        <a href="pedidos.html">Pedidos</a>
+        <a href="envio.html">Envío</a>
+        <a href="fidelizacion.html">Fidelización</a>
+        <a href="impacto.html">Impacto</a>
+        <a href="productos.html#catalogo">Compartir</a>
+        <a href="perfil.html">Mi perfil</a>
+        <a href="carrito.html">Carrito <span id="contador-carrito">0</span></a>
+      </nav>
     </div>
-    <p id="mensaje-compartir" class="mensaje" role="status" aria-live="polite"></p>
-  </section>
-  <section class="reseñas-section">
-    <div class="section-heading"><div><p class="eyebrow">Experiencias de nuestros clientes</p><h2>Reseñas y calificaciones</h2></div><div id="resumen-calificacion"></div></div>
-    <div id="lista-reseñas" class="lista-reseñas"></div>
-    <form id="form-reseña" class="form-reseña">
-      <h3>Comparte tu experiencia</h3>
-      <div class="campo"><label for="nombre-reseña">Nombre</label><input id="nombre-reseña" required maxlength="60"></div>
-      <div class="campo"><label for="calificacion">Calificación</label><select id="calificacion" required><option value="">Selecciona una calificación</option><option value="5">★★★★★ — Excelente</option><option value="4">★★★★☆ — Muy bueno</option><option value="3">★★★☆☆ — Bueno</option><option value="2">★★☆☆☆ — Regular</option><option value="1">★☆☆☆☆ — Malo</option></select></div>
-      <div class="campo"><label for="comentario">Comentario</label><textarea id="comentario" rows="4" maxlength="500" required placeholder="¿Qué te pareció este producto?"></textarea></div>
-      <button class="btn-agregar" type="submit">Publicar reseña</button><p id="mensaje-reseña" class="mensaje" role="status"></p>
-    </form>
-  </section>
-</main>
-<footer class="site-footer"><div class="container"><p>HuertoHogar · Productos frescos y orgánicos</p></div></footer>
-<script src="js/productos.js"></script>
-<script src="js/reseñas.js"></script>
-<script src="js/compartir.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const codigo = new URLSearchParams(location.search).get('codigo');
-  const producto = productos.find(p => p.codigo === codigo) || productos[0];
-  renderizarDetalleProducto(producto);
-  renderizarInformacionExtra(producto);
-  prepararReseñas(producto);
-  const contador = document.getElementById('contador-carrito');
-  const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
-  if (contador) contador.textContent = carrito.reduce((s,p)=>s + Number(p.cantidad || 0), 0);
-});
-</script>
+  </header>
+
+  <main class="container detalle-page">
+    <a href="productos.html" class="btn-secundario">← Volver al catálogo</a>
+
+    <section id="detalle-producto" class="detalle-producto-card" aria-live="polite"></section>
+
+    <section id="informacion-extra" class="info-extra-section" aria-labelledby="titulo-info-extra">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Información extra</p>
+          <h2 id="titulo-info-extra">Conoce mejor este producto</h2>
+          <p class="texto-compartir">Información de sostenibilidad y una receta sugerida para aprovecharlo en casa.</p>
+        </div>
+      </div>
+      <div id="info-extra-contenido" class="info-extra-grid"></div>
+    </section>
+
+    <section class="compartir-section" aria-labelledby="titulo-compartir">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Comparte y recomienda</p>
+          <h2 id="titulo-compartir">¿Te gustó este producto?</h2>
+          <p class="texto-compartir">Comparte este producto o una promoción de HuertoHogar con tus amigos.</p>
+        </div>
+      </div>
+      <div class="compartir-acciones">
+        <button class="btn-secundario btn-compartir" type="button" data-red="whatsapp">WhatsApp</button>
+        <button class="btn-secundario btn-compartir" type="button" data-red="facebook">Facebook</button>
+        <button class="btn-secundario btn-compartir" type="button" data-red="x">X</button>
+        <button class="btn-secundario btn-compartir" type="button" data-red="copiar">Copiar enlace</button>
+      </div>
+      <p id="mensaje-compartir" class="mensaje" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="reseñas-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Experiencias de nuestros clientes</p>
+          <h2>Reseñas y calificaciones</h2>
+        </div>
+        <div id="resumen-calificacion"></div>
+      </div>
+
+      <div id="lista-reseñas" class="lista-reseñas"></div>
+
+      <form id="form-reseña" class="form-reseña">
+        <h3>Comparte tu experiencia</h3>
+        <div class="campo">
+          <label for="nombre-reseña">Nombre</label>
+          <input id="nombre-reseña" required maxlength="60">
+        </div>
+        <div class="campo">
+          <label for="calificacion">Calificación</label>
+          <select id="calificacion" required>
+            <option value="">Selecciona una calificación</option>
+            <option value="5">★★★★★ — Excelente</option>
+            <option value="4">★★★★☆ — Muy bueno</option>
+            <option value="3">★★★☆☆ — Bueno</option>
+            <option value="2">★★☆☆☆ — Regular</option>
+            <option value="1">★☆☆☆☆ — Malo</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="comentario">Comentario</label>
+          <textarea id="comentario" rows="4" maxlength="500" required placeholder="¿Qué te pareció este producto?"></textarea>
+        </div>
+        <button class="btn-agregar" type="submit">Publicar reseña</button>
+        <p id="mensaje-reseña" class="mensaje" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>HuertoHogar · Productos frescos y orgánicos</p>
+    </div>
+  </footer>
+
+  <script src="js/productos.js"></script>
+  <script src="js/reseñas.js"></script>
+  <script src="js/compartir.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const codigo = new URLSearchParams(location.search).get('codigo');
+      const producto = productos.find(p => p.codigo === codigo) || productos[0];
+
+      renderizarDetalleProducto(producto);
+      renderizarInformacionExtra(producto);
+      prepararReseñas(producto);
+
+      const contador = document.getElementById('contador-carrito');
+      const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+      if (contador) {
+        contador.textContent = carrito.reduce((s, p) => s + Number(p.cantidad || 0), 0);
+      }
+    });
+  </script>
 </body>
 </html>

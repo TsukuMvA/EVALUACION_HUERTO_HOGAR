@@ -1,7 +1,90 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Artículo | HuertoHogar</title><link rel="stylesheet" href="css/styles.css"></head><body>
-<header class="site-header"><div class="contenedor header-inner"><a class="logo" href="index.html">HuertoHogar</a><nav><a href="index.html">Inicio</a><a href="productos.html">Productos</a><a href="blog.html" class="activo">Blog</a><a href="nosotros.html">Nosotros</a><a href="carrito.html">🛒 Carrito <span id="contador-carrito">0</span></a></nav></div></header>
-<main><article class="articulo" id="contenido-articulo"></article></main><footer class="site-footer"><div class="contenedor"><p>HuertoHogar · Alimentación saludable y sostenibilidad.</p></div></footer><script src="js/carrito.js"></script><script>
-const articulos={verduras:{cat:'Alimentación saludable',titulo:'Cómo incorporar más verduras a tu alimentación',intro:'Las verduras frescas son una alternativa versátil para acompañar una alimentación variada.',secciones:[['Ideas para el día a día','Puedes incorporarlas en ensaladas, guisos, tortillas, acompañamientos y preparaciones rápidas. Tener verduras listas para cocinar facilita mantener buenos hábitos.'],['Aprovecha su variedad','Combina colores y texturas para crear platos más atractivos. Zanahorias, espinacas y pimientos pueden formar parte de preparaciones muy diferentes.']]},frutas:{cat:'Alimentación saludable',titulo:'Frutas de temporada: sabor y frescura',intro:'Las frutas frescas pueden disfrutarse solas o utilizarse en preparaciones sencillas.',secciones:[['Colaciones simples','Una fruta lavada y lista para consumir puede ser una alternativa práctica durante el día.'],['Ideas para cocinar','También puedes utilizarlas en ensaladas, postres y smoothies para variar tus preparaciones.']]},local:{cat:'Sostenibilidad',titulo:'Comprar local y apoyar al campo',intro:'Elegir productos de origen local ayuda a acercar a consumidores y productores.',secciones:[['Una conexión más cercana','Conocer el origen de los alimentos permite valorar el trabajo de agricultores y productores locales.'],['Consumo consciente','Al preferir productos locales cuando están disponibles, puedes apoyar a las comunidades vinculadas a su producción.']]},sostenible:{cat:'Sostenibilidad',titulo:'Pequeños hábitos para una cocina más sostenible',intro:'La sostenibilidad también puede comenzar con decisiones cotidianas dentro de la cocina.',secciones:[['Reduce el desperdicio','Planifica tus compras, conserva correctamente los alimentos y aprovecha ingredientes antes de que se deterioren.'],['Compra con propósito','Prefiere productos que conozcas, revisa su origen y compra cantidades acordes a tu consumo.']]}};
-const key=new URLSearchParams(location.search).get('articulo')||'verduras',a=articulos[key]||articulos.verduras;document.getElementById('contenido-articulo').innerHTML='<span class="eyebrow">'+a.cat+'</span><h1>'+a.titulo+'</h1><p><strong>'+a.intro+'</strong></p>'+a.secciones.map(s=>'<h2>'+s[0]+'</h2><p>'+s[1]+'</p>').join('')+'<a class="btn-secundario" href="blog.html">← Volver al blog</a>';
-if(typeof actualizarContadorCarrito==='function') actualizarContadorCarrito();
-</script></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artículo | HuertoHogar</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="contenedor header-inner">
+      <a class="logo" href="index.html">HuertoHogar</a>
+      <nav>
+        <a href="index.html">Inicio</a>
+        <a href="productos.html">Productos</a>
+        <a href="blog.html" class="activo">Blog</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="carrito.html">🛒 Carrito <span id="contador-carrito">0</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="articulo" id="contenido-articulo"></article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="contenedor">
+      <p>HuertoHogar · Alimentación saludable y sostenibilidad.</p>
+    </div>
+  </footer>
+
+  <script src="js/carrito.js"></script>
+  <script>
+    const articulos = {
+      verduras: {
+        cat: 'Alimentación saludable',
+        titulo: 'Cómo incorporar más verduras a tu alimentación',
+        intro: 'Las verduras frescas son una alternativa versátil para acompañar una alimentación variada.',
+        secciones: [
+          ['Ideas para el día a día', 'Puedes incorporarlas en ensaladas, guisos, tortillas, acompañamientos y preparaciones rápidas. Tener verduras listas para cocinar facilita mantener buenos hábitos.'],
+          ['Aprovecha su variedad', 'Combina colores y texturas para crear platos más atractivos. Zanahorias, espinacas y pimientos pueden formar parte de preparaciones muy diferentes.']
+        ]
+      },
+      frutas: {
+        cat: 'Alimentación saludable',
+        titulo: 'Frutas de temporada: sabor y frescura',
+        intro: 'Las frutas frescas pueden disfrutarse solas o utilizarse en preparaciones sencillas.',
+        secciones: [
+          ['Colaciones simples', 'Una fruta lavada y lista para consumir puede ser una alternativa práctica durante el día.'],
+          ['Ideas para cocinar', 'También puedes utilizarlas en ensaladas, postres y smoothies para variar tus preparaciones.']
+        ]
+      },
+      local: {
+        cat: 'Sostenibilidad',
+        titulo: 'Comprar local y apoyar al campo',
+        intro: 'Elegir productos de origen local ayuda a acercar a consumidores y productores.',
+        secciones: [
+          ['Una conexión más cercana', 'Conocer el origen de los alimentos permite valorar el trabajo de agricultores y productores locales.'],
+          ['Consumo consciente', 'Al preferir productos locales cuando están disponibles, puedes apoyar a las comunidades vinculadas a su producción.']
+        ]
+      },
+      sostenible: {
+        cat: 'Sostenibilidad',
+        titulo: 'Pequeños hábitos para una cocina más sostenible',
+        intro: 'La sostenibilidad también puede comenzar con decisiones cotidianas dentro de la cocina.',
+        secciones: [
+          ['Reduce el desperdicio', 'Planifica tus compras, conserva correctamente los alimentos y aprovecha ingredientes antes de que se deterioren.'],
+          ['Compra con propósito', 'Prefiere productos que conozcas, revisa su origen y compra cantidades acordes a tu consumo.']
+        ]
+      }
+    };
+
+    const key = new URLSearchParams(location.search).get('articulo') || 'verduras';
+    const a = articulos[key] || articulos.verduras;
+
+    document.getElementById('contenido-articulo').innerHTML = `
+      <span class="eyebrow">${a.cat}</span>
+      <h1>${a.titulo}</h1>
+      <p><strong>${a.intro}</strong></p>
+      ${a.secciones.map(s => `<h2>${s[0]}</h2><p>${s[1]}</p>`).join('')}
+      <a class="btn-secundario" href="blog.html">← Volver al blog</a>
+    `;
+
+    if (typeof actualizarContadorCarrito === 'function') {
+      actualizarContadorCarrito();
+    }
+  </script>
+</body>
+</html>

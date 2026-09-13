@@ -1,20 +1,97 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Impacto ambiental | HuertoHogar</title><link rel="stylesheet" href="css/styles.css"></head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impacto ambiental | HuertoHogar</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
 <body>
-<header class="site-header"><div class="contenedor nav-principal"><a class="logo" href="index.html">🌱 HuertoHogar</a><nav aria-label="Navegación principal"><a href="index.html">Inicio</a><a href="productos.html">Productos</a><a href="pedidos.html">Pedidos</a><a href="envio.html">Envío</a><a href="blog.html">Blog</a><a href="nosotros.html">Nosotros</a><a href="fidelizacion.html">Fidelización</a><a href="perfil.html">Mi perfil</a><a href="carrito.html">🛒 Carrito <span id="contador-carrito">0</span></a></nav></div></header>
-<main>
-<section class="hero-productos"><div class="contenedor"><span class="etiqueta">INFORMACIÓN EXTRA</span><h1>Tu impacto positivo</h1><p>Conoce cómo tus compras pueden apoyar la producción local y prácticas de consumo más sostenibles.</p></div></section>
-<section class="seccion"><div class="contenedor">
-<div id="mensaje-impacto" class="mensaje exito"></div>
-<div class="impacto-grid">
-<article class="impacto-card impacto-destacado"><span class="impacto-icono">🌎</span><p class="eyebrow">Huella de carbono</p><h2 id="indicador-impacto">Sin compras registradas</h2><p id="detalle-impacto">Realiza una compra para ver tu indicador educativo de impacto.</p><div class="progreso-contenedor"><div id="barra-impacto" class="progreso-barra"></div></div><p class="texto-secundario">Indicador educativo del prototipo: se consideran productos con origen local explícitamente informado.</p></article>
-<article class="impacto-card"><span class="impacto-icono">🤝</span><p class="eyebrow">Comunidad</p><h2 id="aporte-comunidad">$0</h2><p>Valor acumulado de compras de productos cuyo origen local está identificado.</p><p id="detalle-comunidad" class="texto-secundario"></p></article>
-<article class="impacto-card"><span class="impacto-icono">🌱</span><p class="eyebrow">Compras locales</p><h2 id="compras-locales">0</h2><p>Unidades de productos locales incluidas en tus pedidos.</p></article>
-</div>
-<div class="tarjeta nota-impacto"><h2>¿Qué significa este indicador?</h2><p>Comprar productos de origen local puede favorecer cadenas de abastecimiento más cercanas y apoyar a productores de la comunidad. Para no presentar una cifra científica sin una metodología validada, HuertoHogar muestra aquí un <strong>indicador educativo</strong>, no una medición certificada de CO₂e.</p><a class="btn-secundario" href="productos.html">Explorar productos</a></div>
-</div></section>
-</main>
-<footer class="site-footer"><div class="contenedor footer-grid"><div><h2>HuertoHogar</h2><p>Del campo a tu hogar, promoviendo una alimentación saludable y sostenible.</p></div><div><h3>Información</h3><p><a href="impacto.html">Impacto ambiental</a></p><p><a href="blog.html">Blog</a></p></div></div></footer>
-<script src="js/auth.js"></script><script src="js/productos.js"></script><script src="js/pedidos.js"></script><script src="js/carrito.js"></script><script src="js/impacto.js"></script>
-</body></html>
+  <header class="site-header">
+    <div class="contenedor nav-principal">
+      <a class="logo" href="index.html">🌱 HuertoHogar</a>
+      <nav aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <a href="productos.html">Productos</a>
+        <a href="pedidos.html">Pedidos</a>
+        <a href="envio.html">Envío</a>
+        <a href="blog.html">Blog</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="fidelizacion.html">Fidelización</a>
+        <a href="perfil.html">Mi perfil</a>
+        <a href="carrito.html">🛒 Carrito <span id="contador-carrito">0</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-productos">
+      <div class="contenedor">
+        <span class="etiqueta">INFORMACIÓN EXTRA</span>
+        <h1>Tu impacto positivo</h1>
+        <p>Conoce cómo tus compras pueden apoyar la producción local y prácticas de consumo más sostenibles.</p>
+      </div>
+    </section>
+
+    <section class="seccion">
+      <div class="contenedor">
+        <div id="mensaje-impacto" class="mensaje exito"></div>
+
+        <div class="impacto-grid">
+          <article class="impacto-card impacto-destacado">
+            <span class="impacto-icono">🌎</span>
+            <p class="eyebrow">Huella de carbono</p>
+            <h2 id="indicador-impacto">Sin compras registradas</h2>
+            <p id="detalle-impacto">Realiza una compra para ver tu indicador educativo de impacto.</p>
+            <div class="progreso-contenedor">
+              <div id="barra-impacto" class="progreso-barra"></div>
+            </div>
+            <p class="texto-secundario">Indicador educativo del prototipo: se consideran productos con origen local explícitamente informado.</p>
+          </article>
+
+          <article class="impacto-card">
+            <span class="impacto-icono">🤝</span>
+            <p class="eyebrow">Comunidad</p>
+            <h2 id="aporte-comunidad">$0</h2>
+            <p>Valor acumulado de compras de productos cuyo origen local está identificado.</p>
+            <p id="detalle-comunidad" class="texto-secundario"></p>
+          </article>
+
+          <article class="impacto-card">
+            <span class="impacto-icono">🌱</span>
+            <p class="eyebrow">Compras locales</p>
+            <h2 id="compras-locales">0</h2>
+            <p>Unidades de productos locales incluidas en tus pedidos.</p>
+          </article>
+        </div>
+
+        <div class="tarjeta nota-impacto">
+          <h2>¿Qué significa este indicador?</h2>
+          <p>Comprar productos de origen local puede favorecer cadenas de abastecimiento más cercanas y apoyar a productores de la comunidad. Para no presentar una cifra científica sin una metodología validada, HuertoHogar muestra aquí un <strong>indicador educativo</strong>, no una medición certificada de CO₂e.</p>
+          <a class="btn-secundario" href="productos.html">Explorar productos</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="contenedor footer-grid">
+      <div>
+        <h2>HuertoHogar</h2>
+        <p>Del campo a tu hogar, promoviendo una alimentación saludable y sostenible.</p>
+      </div>
+      <div>
+        <h3>Información</h3>
+        <p><a href="impacto.html">Impacto ambiental</a></p>
+        <p><a href="blog.html">Blog</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/productos.js"></script>
+  <script src="js/pedidos.js"></script>
+  <script src="js/carrito.js"></script>
+  <script src="js/impacto.js"></script>
+</body>
+</html>

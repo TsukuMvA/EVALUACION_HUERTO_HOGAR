@@ -10,59 +10,115 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<header class="site-header">
-  <div class="contenedor nav-principal">
-    <a class="logo" href="index.html">HuertoHogar</a>
-    <nav aria-label="Navegación principal">
-      <a href="index.html">Inicio</a><a href="productos.html">Productos</a><a href="perfil.html">Mi Perfil</a><a href="pedidos.html">Pedidos</a><a href="envio.html">Envío</a><a href="fidelizacion.html" aria-current="page">Fidelización</a><a href="carrito.html">🛒 Carrito <span id="contador-carrito">0</span></a>
-    </nav>
-  </div>
-</header>
-<main>
-  <section class="hero-productos">
-    <div class="contenedor">
-      <span class="etiqueta">PROGRAMA DE FIDELIZACIÓN</span>
-      <h1>Premiamos tus compras frecuentes</h1>
-      <p>Acumula puntos con tus pedidos y conoce tus beneficios como cliente frecuente de HuertoHogar.</p>
+  <header class="site-header">
+    <div class="contenedor nav-principal">
+      <a class="logo" href="index.html">HuertoHogar</a>
+      <nav aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <a href="productos.html">Productos</a>
+        <a href="perfil.html">Mi Perfil</a>
+        <a href="pedidos.html">Pedidos</a>
+        <a href="envio.html">Envío</a>
+        <a href="fidelizacion.html" aria-current="page">Fidelización</a>
+        <a href="carrito.html">🛒 Carrito <span id="contador-carrito">0</span></a>
+      </nav>
     </div>
-  </section>
-  <section class="seccion">
-    <div class="contenedor">
-      <div id="mensaje-fidelizacion" class="mensaje" role="status" aria-live="polite"></div>
-      <div id="fidelizacion-contenido">
-        <div class="fidelizacion-grid">
-          <article class="fidelizacion-card fidelizacion-puntos">
-            <span class="fidelizacion-icono">⭐</span>
-            <p class="eyebrow">Tus puntos</p>
-            <h2 id="puntos-actuales">0</h2>
-            <p>Puntos acumulados</p>
-          </article>
-          <article class="fidelizacion-card">
-            <p class="eyebrow">Nivel actual</p>
-            <h2 id="nivel-actual">Semilla</h2>
-            <p id="beneficio-nivel">Beneficio inicial del programa.</p>
-            <div class="progreso-contenedor" aria-label="Progreso hacia el siguiente nivel"><div id="barra-progreso" class="progreso-barra"></div></div>
-            <p id="texto-progreso" class="texto-progreso"></p>
-          </article>
+  </header>
+
+  <main>
+    <section class="hero-productos">
+      <div class="contenedor">
+        <span class="etiqueta">PROGRAMA DE FIDELIZACIÓN</span>
+        <h1>Premiamos tus compras frecuentes</h1>
+        <p>Acumula puntos con tus pedidos y conoce tus beneficios como cliente frecuente de HuertoHogar.</p>
+      </div>
+    </section>
+
+    <section class="seccion">
+      <div class="contenedor">
+        <div id="mensaje-fidelizacion" class="mensaje" role="status" aria-live="polite"></div>
+
+        <div id="fidelizacion-contenido">
+          <div class="fidelizacion-grid">
+            <article class="fidelizacion-card fidelizacion-puntos">
+              <span class="fidelizacion-icono">⭐</span>
+              <p class="eyebrow">Tus puntos</p>
+              <h2 id="puntos-actuales">0</h2>
+              <p>Puntos acumulados</p>
+            </article>
+
+            <article class="fidelizacion-card">
+              <p class="eyebrow">Nivel actual</p>
+              <h2 id="nivel-actual">Semilla</h2>
+              <p id="beneficio-nivel">Beneficio inicial del programa.</p>
+              <div class="progreso-contenedor" aria-label="Progreso hacia el siguiente nivel">
+                <div id="barra-progreso" class="progreso-barra"></div>
+              </div>
+              <p id="texto-progreso" class="texto-progreso"></p>
+            </article>
+          </div>
+
+          <div class="fidelizacion-grid beneficios-grid">
+            <article class="fidelizacion-card">
+              <h2>¿Cómo ganas puntos?</h2>
+              <p>Por cada <strong>$100 CLP</strong> de una compra confirmada obtienes <strong>1 punto</strong>. Esta equivalencia es una regla de demostración para el proyecto.</p>
+            </article>
+
+            <article class="fidelizacion-card">
+              <h2>Canje de demostración</h2>
+              <p>Al alcanzar <strong>100 puntos</strong>, puedes canjearlos por un descuento de <strong>$1.000 CLP</strong> en esta demo.</p>
+              <button id="btn-canjear" class="btn-agregar" type="button">Canjear 100 puntos</button>
+            </article>
+          </div>
+
+          <div class="fidelizacion-card tabla-puntos-card">
+            <h2>Niveles del programa</h2>
+            <div class="tabla-scroll">
+              <table class="tabla-carrito tabla-fidelizacion">
+                <thead>
+                  <tr>
+                    <th>Nivel</th>
+                    <th>Puntos</th>
+                    <th>Beneficio</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>🌱 Semilla</td>
+                    <td>0–99</td>
+                    <td>Acumulación de puntos</td>
+                  </tr>
+                  <tr>
+                    <td>🌿 Brote</td>
+                    <td>100–299</td>
+                    <td>Descuento de demostración disponible</td>
+                  </tr>
+                  <tr>
+                    <td>🌳 Huerto</td>
+                    <td>300+</td>
+                    <td>Descuento de demostración + beneficio preferente</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
-        <div class="fidelizacion-grid beneficios-grid">
-          <article class="fidelizacion-card"><h2>¿Cómo ganas puntos?</h2><p>Por cada <strong>$100 CLP</strong> de una compra confirmada obtienes <strong>1 punto</strong>. Esta equivalencia es una regla de demostración para el proyecto.</p></article>
-          <article class="fidelizacion-card"><h2>Canje de demostración</h2><p>Al alcanzar <strong>100 puntos</strong>, puedes canjearlos por un descuento de <strong>$1.000 CLP</strong> en esta demo.</p><button id="btn-canjear" class="btn-agregar" type="button">Canjear 100 puntos</button></article>
-        </div>
-        <div class="fidelizacion-card tabla-puntos-card">
-          <h2>Niveles del programa</h2>
-          <div class="tabla-scroll"><table class="tabla-carrito tabla-fidelizacion"><thead><tr><th>Nivel</th><th>Puntos</th><th>Beneficio</th></tr></thead><tbody>
-            <tr><td>🌱 Semilla</td><td>0–99</td><td>Acumulación de puntos</td></tr>
-            <tr><td>🌿 Brote</td><td>100–299</td><td>Descuento de demostración disponible</td></tr>
-            <tr><td>🌳 Huerto</td><td>300+</td><td>Descuento de demostración + beneficio preferente</td></tr>
-          </tbody></table></div>
+
+        <div id="fidelizacion-login" class="carrito-vacio" hidden>
+          <div class="carrito-vacio-icono">🔐</div>
+          <h2>Inicia sesión para ver tus puntos</h2>
+          <p>El programa vincula los puntos con la cuenta del cliente.</p>
+          <a class="btn-agregar" href="login.html">Iniciar sesión</a>
         </div>
       </div>
-      <div id="fidelizacion-login" class="carrito-vacio" hidden><div class="carrito-vacio-icono">🔐</div><h2>Inicia sesión para ver tus puntos</h2><p>El programa vincula los puntos con la cuenta del cliente.</p><a class="btn-agregar" href="login.html">Iniciar sesión</a></div>
-    </div>
-  </section>
-</main>
-<footer><p>© 2026 HuertoHogar · Productos frescos y de origen local</p></footer>
-<script src="js/auth.js"></script><script src="js/fidelizacion.js"></script>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 HuertoHogar · Productos frescos y de origen local</p>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/fidelizacion.js"></script>
 </body>
 </html>

@@ -1,27 +1,102 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Envío | HuertoHogar</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Envío | HuertoHogar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<header class="site-header"><div class="contenedor nav-principal"><a class="logo" href="index.html">HuertoHogar</a><nav aria-label="Navegación principal"><a href="index.html">Inicio</a><a href="productos.html">Productos</a><a href="perfil.html">Mi Perfil</a><a href="pedidos.html">Pedidos</a><a href="carrito.html">🛒 Carrito <span id="contador-carrito">0</span></a></nav></div></header>
-<main><section class="hero-productos"><div class="contenedor"><span class="etiqueta">DESPACHO</span><h1>Coordina tu entrega</h1><p>Confirma tu dirección y selecciona una fecha preferida para recibir tu pedido.</p></div></section>
-<section class="envio-seccion"><div class="contenedor envio-layout">
-<form id="form-envio" class="formulario-envio">
-<h2>Datos de entrega</h2><p class="texto-ayuda">Puedes usar los datos guardados en tu perfil o modificarlos para este pedido.</p>
-<div id="mensaje-envio" class="mensaje" role="alert" aria-live="polite"></div>
-<label for="direccion-envio">Dirección de entrega</label><input id="direccion-envio" required maxlength="160" placeholder="Calle y número">
-<div class="form-grid-2"><div><label for="region-envio">Región</label><select id="region-envio" required></select></div><div><label for="comuna-envio">Comuna</label><select id="comuna-envio" required></select></div></div>
-<label for="telefono-envio">Teléfono de contacto</label><input id="telefono-envio" type="tel" required maxlength="20" placeholder="+56 9 1234 5678">
-<label for="fecha-entrega">Fecha preferida de entrega</label><input id="fecha-entrega" type="date" required><small class="texto-ayuda">La fecha es una preferencia y está sujeta a confirmación de disponibilidad.</small>
-<div class="opciones-horario"><span class="label-opcion">Horario preferido</span><label><input type="radio" name="horario" value="09:00 - 13:00" checked> Mañana (09:00–13:00)</label><label><input type="radio" name="horario" value="14:00 - 19:00"> Tarde (14:00–19:00)</label></div>
-<button class="btn-agregar btn-confirmar-envio" type="submit">Confirmar pedido y despacho</button><a class="seguir-comprando" href="carrito.html">← Volver al carrito</a>
-</form>
-<aside class="resumen-carrito resumen-envio"><h2>Resumen del pedido</h2><div id="resumen-envio-productos"></div><div class="resumen-total"><span>Total</span><strong id="total-envio">$0</strong></div><div class="seguimiento-mini"><strong>Seguimiento</strong><p>Al confirmar recibirás un número de pedido y podrás revisar el estado del despacho desde “Pedidos”.</p></div></aside>
-</div></section></main><footer><p>© 2026 HuertoHogar · Productos frescos y de origen local</p></footer>
-<script src="js/auth.js"></script><script src="js/regiones.js"></script><script src="js/envio.js"></script>
-</body></html>
+  <header class="site-header">
+    <div class="contenedor nav-principal">
+      <a class="logo" href="index.html">HuertoHogar</a>
+      <nav aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <a href="productos.html">Productos</a>
+        <a href="perfil.html">Mi Perfil</a>
+        <a href="pedidos.html">Pedidos</a>
+        <a href="carrito.html">🛒 Carrito <span id="contador-carrito">0</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-productos">
+      <div class="contenedor">
+        <span class="etiqueta">DESPACHO</span>
+        <h1>Coordina tu entrega</h1>
+        <p>Confirma tu dirección y selecciona una fecha preferida para recibir tu pedido.</p>
+      </div>
+    </section>
+
+    <section class="envio-seccion">
+      <div class="contenedor envio-layout">
+        <form id="form-envio" class="formulario-envio">
+          <h2>Datos de entrega</h2>
+          <p class="texto-ayuda">Puedes usar los datos guardados en tu perfil o modificarlos para este pedido.</p>
+
+          <div id="mensaje-envio" class="mensaje" role="alert" aria-live="polite"></div>
+
+          <label for="direccion-envio">Dirección de entrega</label>
+          <input id="direccion-envio" required maxlength="160" placeholder="Calle y número">
+
+          <div class="form-grid-2">
+            <div>
+              <label for="region-envio">Región</label>
+              <select id="region-envio" required></select>
+            </div>
+            <div>
+              <label for="comuna-envio">Comuna</label>
+              <select id="comuna-envio" required></select>
+            </div>
+          </div>
+
+          <label for="telefono-envio">Teléfono de contacto</label>
+          <input id="telefono-envio" type="tel" required maxlength="20" placeholder="+56 9 1234 5678">
+
+          <label for="fecha-entrega">Fecha preferida de entrega</label>
+          <input id="fecha-entrega" type="date" required>
+          <small class="texto-ayuda">La fecha es una preferencia y está sujeta a confirmación de disponibilidad.</small>
+
+          <div class="opciones-horario">
+            <span class="label-opcion">Horario preferido</span>
+            <label>
+              <input type="radio" name="horario" value="09:00 - 13:00" checked> Mañana (09:00–13:00)
+            </label>
+            <label>
+              <input type="radio" name="horario" value="14:00 - 19:00"> Tarde (14:00–19:00)
+            </label>
+          </div>
+
+          <button class="btn-agregar btn-confirmar-envio" type="submit">Confirmar pedido y despacho</button>
+          <a class="seguir-comprando" href="carrito.html">← Volver al carrito</a>
+        </form>
+
+        <aside class="resumen-carrito resumen-envio">
+          <h2>Resumen del pedido</h2>
+          <div id="resumen-envio-productos"></div>
+          <div class="resumen-total">
+            <span>Total</span>
+            <strong id="total-envio">$0</strong>
+          </div>
+          <div class="seguimiento-mini">
+            <strong>Seguimiento</strong>
+            <p>Al confirmar recibirás un número de pedido y podrás revisar el estado del despacho desde “Pedidos”.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 HuertoHogar · Productos frescos y de origen local</p>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/regiones.js"></script>
+  <script src="js/envio.js"></script>
+</body>
+</html>

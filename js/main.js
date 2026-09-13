@@ -79,11 +79,11 @@ function aplicarFiltros() {
   });
 
   const comparadores = {
-    'nombre-asc': (a,b) => a.nombre.localeCompare(b.nombre, 'es'),
-    'nombre-desc': (a,b) => b.nombre.localeCompare(a.nombre, 'es'),
-    'precio-asc': (a,b) => a.precio - b.precio,
-    'precio-desc': (a,b) => b.precio - a.precio,
-    'stock-desc': (a,b) => b.stock - a.stock
+    'nombre-asc': (a, b) => a.nombre.localeCompare(b.nombre, 'es'),
+    'nombre-desc': (a, b) => b.nombre.localeCompare(a.nombre, 'es'),
+    'precio-asc': (a, b) => a.precio - b.precio,
+    'precio-desc': (a, b) => b.precio - a.precio,
+    'stock-desc': (a, b) => b.stock - a.stock
   };
   if (comparadores[orden]) filtrados.sort(comparadores[orden]);
 
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
   cargarCatalogo();
   if (typeof prepararCompartirCatalogo === 'function') prepararCompartirCatalogo();
 
-  ['buscar-producto','filtro-categoria','filtro-disponibilidad','precio-min','precio-max','ordenar-productos'].forEach(id => {
+  ['buscar-producto', 'filtro-categoria', 'filtro-disponibilidad', 'precio-min', 'precio-max', 'ordenar-productos'].forEach(id => {
     const elemento = document.getElementById(id);
     elemento?.addEventListener(elemento.tagName === 'INPUT' && elemento.type === 'search' ? 'input' : 'change', aplicarFiltros);
     if (id === 'precio-min' || id === 'precio-max') elemento?.addEventListener('input', aplicarFiltros);
@@ -121,8 +121,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('precio-max').value = '';
     document.getElementById('ordenar-productos').value = 'relevancia';
     cargarCatalogo();
-    actualizarResumenFiltros(productos.length, { texto:'', categoria:'Todas', disponibilidad:'Todas', precioMin:0, precioMaxValor:'', orden:'relevancia' });
+    actualizarResumenFiltros(productos.length, { texto: '', categoria: 'Todas', disponibilidad: 'Todas', precioMin: 0, precioMaxValor: '', orden: 'relevancia' });
   });
 
-  actualizarResumenFiltros(productos.length, { texto:'', categoria:'Todas', disponibilidad:'Todas', precioMin:0, precioMaxValor:'', orden:'relevancia' });
+  actualizarResumenFiltros(productos.length, { texto: '', categoria: 'Todas', disponibilidad: 'Todas', precioMin: 0, precioMaxValor: '', orden: 'relevancia' });
 });
