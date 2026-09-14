@@ -1,4 +1,5 @@
-let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+// Se usa la misma clave que en productos.js
+let carrito = JSON.parse(localStorage.getItem('huertohogar_carrito')) || [];
 
 const tablaCarrito = document.getElementById('items-carrito');
 const totalPago = document.getElementById('total-pago');
@@ -12,17 +13,19 @@ const btnComprar = document.getElementById('btn-comprar');
 const mensajeCarrito = document.getElementById('mensaje-carrito');
 
 function formatearPrecio(valor) {
+  const precioNumerico = Number(valor) || 0;
   return new Intl.NumberFormat('es-CL', {
     style: 'currency',
     currency: 'CLP',
     maximumFractionDigits: 0
-  }).format(valor);
+  }).format(precioNumerico);
 }
 
 function obtenerStock(nombre) {
-  if (typeof productos === 'undefined') return Infinity;
-  const producto = productos.find(item => item.nombre === nombre);
-  return producto ? producto.stock : Infinity;
+  if (typeof PRODUCTOS_BASE === 'undefined' && typeof obtenerTodosLosProductos === 'undefined') return Infinity;
+  const listaProductos = typeof obtenerTodosLosProductos === 'function' ? obtenerTodosLosProductos() : (PRODUCTOS_BASE || []);
+  const producto = listaProductos.find(item => item.nombre === nombre);
+  return producto ? (Number(producto.stock) || Infinity) : Infinity;
 }
 
 function mostrarMensaje(texto, tipo = 'exito') {
@@ -37,12 +40,13 @@ function mostrarMensaje(texto, tipo = 'exito') {
 }
 
 function guardarCarrito() {
-  localStorage.setItem('carrito', JSON.stringify(carrito));
+  localStorage.setItem('huertohogar_carrito', JSON.stringify(carrito));
 }
 
 function agregarAlCarrito(nombre, precio, codigo = '', unidad = '') {
   const stock = obtenerStock(nombre);
   const productoExistente = carrito.find(item => item.nombre === nombre);
+  const precioNum = Number(precio) || 0;
 
   if (productoExistente) {
     if (productoExistente.cantidad >= stock) {
@@ -50,9 +54,10 @@ function agregarAlCarrito(nombre, precio, codigo = '', unidad = '') {
       return;
     }
     productoExistente.cantidad += 1;
-    productoExistente.subtotal = productoExistente.cantidad * productoExistente.precio;
+    productoExistente.precio = precioNum;
+    productoExistente.subtotal = productoExistente.cantidad * precioNum;
   } else {
-    carrito.push({ nombre, precio, cantidad: 1, subtotal: precio, codigo, unidad });
+    carrito.push({ nombre, precio: precioNum, cantidad: 1, subtotal: precioNum, codigo, unidad });
   }
 
   guardarCarrito();
@@ -71,6 +76,7 @@ function cambiarCantidad(indice, nuevaCantidad) {
     mostrarMensaje('La cantidad solicitada supera el stock disponible.', 'error');
   }
 
+  producto.precio = Number(producto.precio) || 0;
   producto.cantidad = cantidad;
   producto.subtotal = producto.cantidad * producto.precio;
   guardarCarrito();
@@ -87,6 +93,9 @@ function eliminarProducto(indice) {
 }
 
 function renderizarCarrito() {
+  // Sincronizar datos por si fueron modificados desde otra pestaña o desde productos.js
+  carrito = JSON.parse(localStorage.getItem('huertohogar_carrito')) || [];
+
   if (!tablaCarrito) return;
 
   tablaCarrito.innerHTML = '';
@@ -94,15 +103,21 @@ function renderizarCarrito() {
   let unidadesTotales = 0;
 
   carrito.forEach((producto, indice) => {
-    producto.subtotal = producto.cantidad * producto.precio;
+    const precio = Number(producto.precio) || 0;
+    const cantidad = Number(producto.cantidad) || 1;
+    
+    producto.precio = precio;
+    producto.cantidad = cantidad;
+    producto.subtotal = cantidad * precio;
+
     totalCalculado += producto.subtotal;
     unidadesTotales += producto.cantidad;
 
     const fila = document.createElement('tr');
     fila.innerHTML = `
       <td data-label="Producto">
-        <strong>${producto.nombre}</strong>
-        ${producto.codigo ? `<small>${producto.codigo}${producto.unidad ? ` · ${producto.unidad}` : ''}</small>` : ''}
+        <strong>${producto.nombre || 'Producto'}</strong>
+        ${producto.codigo ? `<br><small>${producto.codigo}${producto.unidad ? ` · ${producto.unidad}` : ''}</small>` : ''}
       </td>
       <td data-label="Precio">${formatearPrecio(producto.precio)}</td>
       <td data-label="Cantidad">

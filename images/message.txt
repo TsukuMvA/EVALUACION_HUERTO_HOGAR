@@ -1,0 +1,284 @@
+# GUION VIDEO EXPLICATIVO EV1
+
+## Proyecto: HuertoHogar
+
+### Duración aproximada: 5 minutos
+
+### Participantes: Persona 1 y Persona 2
+
+---
+
+## 0:00 – 0:25 | PRESENTACIÓN
+
+### PERSONA 1
+
+**Qué mostrar:** Página HOME de HuertoHogar.
+
+**Qué decir:**
+
+> “Hola, somos [NOMBRE 1] y [NOMBRE 2], y en este video presentaremos nuestro proyecto semestral HuertoHogar, una tienda online enfocada en la venta de frutas, verduras y productos orgánicos.
+>
+> En aproximadamente cinco minutos mostraremos las principales funcionalidades implementadas, incluyendo la navegación, catálogo, detalle de productos, carrito de compras, persistencia de datos, validaciones y gestión del usuario.”
+
+---
+
+## 0:25 – 0:55 | HOME Y NAVEGACIÓN
+
+### PERSONA 2
+
+**Qué mostrar:**
+
+* HOME.
+* Menú de navegación.
+* Entrar a Productos.
+* Mostrar brevemente Blog, Nosotros y Perfil.
+
+**Qué decir:**
+
+> “Comenzamos desde la página principal. Desde aquí podemos navegar por las diferentes secciones del sitio.
+>
+> Tenemos acceso al catálogo de productos, el carrito de compras, el perfil del usuario, los pedidos y otras funcionalidades como el blog, información sobre nuestras tiendas y el programa de fidelización.
+>
+> La interfaz utiliza una identidad visual basada en tonos verdes, amarillos y cafés, buscando representar una tienda relacionada con productos naturales y sustentables.”
+
+---
+
+## 0:55 – 1:35 | CATÁLOGO Y DETALLE DEL PRODUCTO
+
+### PERSONA 1
+
+**Qué mostrar:**
+
+* Entrar a `Productos`.
+* Mostrar las categorías.
+* Usar búsqueda/filtros.
+* Seleccionar un producto.
+* Mostrar precio, descripción, origen y disponibilidad.
+
+**Qué decir:**
+
+> “Ahora ingresamos al catálogo de productos.
+>
+> Aquí podemos visualizar los diferentes productos disponibles, organizados por categorías como frutas frescas, verduras orgánicas, productos orgánicos y productos lácteos.
+>
+> También contamos con búsqueda y filtros para facilitar la localización de productos.
+>
+> Por ejemplo, seleccionaremos las Manzanas Fuji.
+>
+> En el detalle podemos revisar información como el precio, descripción, disponibilidad y origen del producto. Además, se incorporó información relacionada con prácticas sustentables y una sugerencia de receta.”
+
+**ACCIÓN:**
+Agregar el producto al carrito.
+
+> “Desde este detalle también podemos agregar directamente el producto al carrito.”
+
+---
+
+## 1:35 – 2:25 | CARRITO DE COMPRAS
+
+### PERSONA 2
+
+**Qué mostrar:**
+
+* Entrar al carrito.
+* Mostrar producto.
+* Aumentar cantidad.
+* Disminuir cantidad.
+* Eliminar producto.
+* Mostrar subtotal/total.
+
+**Qué decir:**
+
+> “A continuación revisamos el carrito de compras.
+>
+> El producto que acabamos de seleccionar aparece automáticamente en el carrito.
+>
+> Desde aquí podemos modificar la cantidad utilizando los controles disponibles. También podemos eliminar un producto si ya no queremos comprarlo.
+>
+> El sistema calcula automáticamente los valores y muestra el resumen de la compra, incluyendo subtotal y total.
+>
+> Esto permite que el usuario pueda revisar su pedido antes de continuar con el proceso de compra.”
+
+---
+
+## 2:25 – 2:50 | PERSISTENCIA CON LOCALSTORAGE
+
+### PERSONA 2
+
+**Qué mostrar:**
+
+* Con el producto todavía en el carrito, recargar la página.
+* Mostrar que el producto continúa en el carrito.
+
+**Qué decir:**
+
+> “Una de las funcionalidades solicitadas es demostrar la persistencia utilizando localStorage.
+>
+> Para comprobarlo, vamos a recargar la página.”
+
+**ACCIÓN:** Presionar F5 o Ctrl+R.
+
+> “Después de recargar, podemos comprobar que el producto continúa dentro del carrito.
+>
+> Esto demuestra que la información del carrito se mantiene almacenada en el navegador y no se pierde simplemente al actualizar la página.”
+
+---
+
+## 2:50 – 3:35 | REGISTRO Y VALIDACIÓN JAVASCRIPT
+
+### PERSONA 1
+
+**Qué mostrar:**
+
+* Ir a Registro.
+* Intentar enviar formulario con datos incorrectos.
+* Mostrar mensajes de validación.
+* Después ingresar datos correctos.
+
+**Qué decir:**
+
+> “Ahora mostraremos la validación de formularios mediante JavaScript.
+>
+> Primero ingresaremos información incorrecta para comprobar que el sistema detecta los errores.”
+
+**ACCIÓN:**
+Ingresar, por ejemplo:
+
+* Nombre incompleto.
+* Correo inválido.
+* Contraseña que no cumple los requisitos.
+* Dejar algún campo requerido vacío.
+
+> “Como podemos observar, el formulario no permite continuar correctamente y muestra mensajes indicando los datos que deben ser corregidos.”
+
+**ACCIÓN:** Corregir los datos.
+
+> “Ahora ingresamos información válida.”
+
+**ACCIÓN:** Completar formulario correctamente.
+
+> “Con los datos correctos, las validaciones son superadas y podemos continuar con el registro.”
+
+---
+
+## 3:35 – 4:15 | PERFIL, PEDIDO Y ENVÍO
+
+### PERSONA 2
+
+**Qué mostrar:**
+
+* Perfil.
+* Datos del usuario.
+* Dirección/región/comuna/teléfono.
+* Pedidos.
+* Proceso de envío o seguimiento.
+
+**Qué decir:**
+
+> “Una vez autenticado el usuario, podemos acceder a su perfil y gestionar información como sus datos de contacto y dirección de entrega.
+>
+> También contamos con una sección de pedidos, donde se puede consultar la información de las compras realizadas.
+>
+> Además, HuertoHogar incorpora un proceso de despacho en el que el usuario puede seleccionar una fecha y horario preferido de entrega y consultar el estado del envío.”
+
+---
+
+## 4:15 – 4:35 | FUNCIONALIDADES ADICIONALES
+
+### PERSONA 1
+
+**Qué mostrar rápidamente:**
+
+* Blog.
+* Fidelización.
+* Reseñas.
+* Nosotros/mapa.
+
+**Qué decir:**
+
+> “Como funcionalidades adicionales, incorporamos un blog con contenidos relacionados con alimentación saludable y sustentabilidad.
+>
+> También tenemos un sistema de fidelización mediante puntos, reseñas y calificaciones de productos, además de una sección de tiendas con ubicación de diferentes ciudades.
+>
+> Estas funcionalidades buscan complementar la experiencia de compra y entregar más información al usuario.”
+
+---
+
+## 4:35 – 4:50 | VISTA ADMINISTRATIVA
+
+### PERSONA 2
+
+**QUÉ MOSTRAR:**
+
+Si tienen una vista administrativa implementada en GitHub, abrirla y mostrarla aquí.
+
+**Qué decir si SÍ existe:**
+
+> “También contamos con la funcionalidad administrativa solicitada para esta evaluación. Desde esta vista se pueden gestionar y revisar los elementos correspondientes al funcionamiento interno del sistema.”
+
+**Si NO existe en la versión de GitHub:**
+
+> “Respecto de la vista administrativa solicitada para EV1, queremos indicar que esta funcionalidad no se encuentra implementada como una vista administrativa independiente en la versión que estamos presentando. El resto de las funcionalidades mostradas corresponde a la versión disponible en nuestro repositorio.”
+
+---
+
+## 4:50 – 5:00 | GITHUB Y CIERRE
+
+### PERSONA 1
+
+**Qué mostrar:**
+
+* Abrir GitHub.
+* Mostrar repositorio.
+* Mostrar rápidamente historial de commits.
+
+**Qué decir:**
+
+> “Finalmente, mostramos brevemente nuestro repositorio de GitHub y el historial de commits, donde se puede revisar la evolución del proyecto.
+>
+> Esta es la versión que corresponde al proyecto presentado en este video.
+>
+> Muchas gracias por revisar nuestro proyecto HuertoHogar.”
+
+---
+
+# DISTRIBUCIÓN DE PARTICIPACIÓN
+
+### PERSONA 1
+
+* Presentación.
+* Catálogo y detalle.
+* Registro y validaciones.
+* Funcionalidades adicionales.
+* GitHub y cierre.
+
+### PERSONA 2
+
+* HOME y navegación.
+* Carrito.
+* localStorage.
+* Perfil, pedidos y envío.
+* Vista administrativa.
+
+---
+
+# RECOMENDACIONES PARA GRABAR
+
+**Antes de comenzar:**
+
+1. Tener el proyecto funcionando y probado.
+2. Tener preparado un usuario de prueba.
+3. Tener productos disponibles para agregar al carrito.
+4. Tener abierta la página HOME.
+5. Tener GitHub preparado para mostrarlo al final.
+6. No leer el código línea por línea: las instrucciones piden demostrar el funcionamiento real del proyecto.
+7. No mostrar una versión diferente de la que está publicada en GitHub.
+8. Si aparece algún error o limitación, mencionarlo brevemente en lugar de ocultarlo.
+
+**Para que dure cerca de 5 minutos**, hablen con ritmo normal y no se detengan demasiado en cada pantalla. La idea es **demostrar las funcionalidades**, no explicar el código.
+
+**Nombre sugerido del archivo:**
+
+`EV1_Seccion_Grupo_Caso.mp4`
+
+Las instrucciones indican además que el video debe subirse a Google Drive y que cada integrante debe entregar el mismo enlace en AVA.
