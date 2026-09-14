@@ -1,4 +1,3 @@
-// Se usa la misma clave que en productos.js
 let carrito = JSON.parse(localStorage.getItem('huertohogar_carrito')) || [];
 
 const tablaCarrito = document.getElementById('items-carrito');
@@ -21,10 +20,10 @@ function formatearPrecio(valor) {
   }).format(precioNumerico);
 }
 
-function obtenerStock(nombre) {
-  if (typeof PRODUCTOS_BASE === 'undefined' && typeof obtenerTodosLosProductos === 'undefined') return Infinity;
-  const listaProductos = typeof obtenerTodosLosProductos === 'function' ? obtenerTodosLosProductos() : (PRODUCTOS_BASE || []);
-  const producto = listaProductos.find(item => item.nombre === nombre);
+function obtenerStock(idProducto, nombreProducto) {
+  if (typeof obtenerTodosLosProductos !== 'function') return Infinity;
+  const listaProductos = obtenerTodosLosProductos();
+  const producto = listaProductos.find(item => item.id === idProducto || item.nombre === nombreProducto);
   return producto ? (Number(producto.stock) || Infinity) : Infinity;
 }
 
@@ -43,33 +42,13 @@ function guardarCarrito() {
   localStorage.setItem('huertohogar_carrito', JSON.stringify(carrito));
 }
 
-function agregarAlCarrito(nombre, precio, codigo = '', unidad = '') {
-  const stock = obtenerStock(nombre);
-  const productoExistente = carrito.find(item => item.nombre === nombre);
-  const precioNum = Number(precio) || 0;
-
-  if (productoExistente) {
-    if (productoExistente.cantidad >= stock) {
-      mostrarMensaje('No puedes agregar más unidades: alcanzaste el stock disponible.', 'error');
-      return;
-    }
-    productoExistente.cantidad += 1;
-    productoExistente.precio = precioNum;
-    productoExistente.subtotal = productoExistente.cantidad * precioNum;
-  } else {
-    carrito.push({ nombre, precio: precioNum, cantidad: 1, subtotal: precioNum, codigo, unidad });
-  }
-
-  guardarCarrito();
-  renderizarCarrito();
-  mostrarMensaje(`${nombre} fue agregado al carrito.`);
-}
-
-function cambiarCantidad(indice, nuevaCantidad) {
+// Expuesta a window para evitar fallos de ámbito en el HTML (onclick="cambiarCantidad(...)")
+window.cambiarCantidad = function(indice, nuevaCantidad) {
+  carrito = JSON.parse(localStorage.getItem('huertohogar_carrito')) || [];
   const producto = carrito[indice];
   if (!producto) return;
 
-  const stock = obtenerStock(producto.nombre);
+  const stock = obtenerStock(producto.id, producto.nombre);
   const cantidad = Math.max(1, Math.min(Number(nuevaCantidad) || 1, stock));
 
   if (cantidad === stock && Number(nuevaCantidad) > stock) {
@@ -81,19 +60,22 @@ function cambiarCantidad(indice, nuevaCantidad) {
   producto.subtotal = producto.cantidad * producto.precio;
   guardarCarrito();
   renderizarCarrito();
-}
+};
 
-function eliminarProducto(indice) {
+// Expuesta a window para los eventos onclick del botón Eliminar
+window.eliminarProducto = function(indice) {
+  carrito = JSON.parse(localStorage.getItem('huertohogar_carrito')) || [];
   const producto = carrito[indice];
   if (!producto) return;
+
+  const nombreEliminado = producto.nombre;
   carrito.splice(indice, 1);
   guardarCarrito();
   renderizarCarrito();
-  mostrarMensaje(`${producto.nombre} fue eliminado del carrito.`);
-}
+  mostrarMensaje(`${nombreEliminado} fue eliminado del carrito.`);
+};
 
 function renderizarCarrito() {
-  // Sincronizar datos por si fueron modificados desde otra pestaña o desde productos.js
   carrito = JSON.parse(localStorage.getItem('huertohogar_carrito')) || [];
 
   if (!tablaCarrito) return;
@@ -111,7 +93,9 @@ function renderizarCarrito() {
     producto.subtotal = cantidad * precio;
 
     totalCalculado += producto.subtotal;
-    unidadesTotales += producto.cantidad;
+    unidadesTotales += cantidad;
+
+    const stockActual = obtenerStock(producto.id, producto.nombre);
 
     const fila = document.createElement('tr');
     fila.innerHTML = `
@@ -122,13 +106,15 @@ function renderizarCarrito() {
       <td data-label="Precio">${formatearPrecio(producto.precio)}</td>
       <td data-label="Cantidad">
         <div class="control-cantidad">
-          <button type="button" aria-label="Disminuir cantidad de ${producto.nombre}" onclick="cambiarCantidad(${indice}, ${producto.cantidad - 1})" ${producto.cantidad <= 1 ? 'disabled' : ''}>−</button>
-          <input type="number" min="1" max="${obtenerStock(producto.nombre)}" value="${producto.cantidad}" aria-label="Cantidad de ${producto.nombre}" onchange="cambiarCantidad(${indice}, this.value)">
-          <button type="button" aria-label="Aumentar cantidad de ${producto.nombre}" onclick="cambiarCantidad(${indice}, ${producto.cantidad + 1})" ${producto.cantidad >= obtenerStock(producto.nombre) ? 'disabled' : ''}>+</button>
+          <button type="button" aria-label="Disminuir cantidad" onclick="cambiarCantidad(${indice}, ${producto.cantidad - 1})" ${producto.cantidad <= 1 ? 'disabled' : ''}>−</button>
+          <input type="number" min="1" max="${stockActual}" value="${producto.cantidad}" onchange="cambiarCantidad(${indice}, this.value)">
+          <button type="button" aria-label="Aumentar cantidad" onclick="cambiarCantidad(${indice}, ${producto.cantidad + 1})" ${producto.cantidad >= stockActual ? 'disabled' : ''}>+</button>
         </div>
       </td>
       <td data-label="Subtotal"><strong>${formatearPrecio(producto.subtotal)}</strong></td>
-      <td data-label="Acciones"><button class="btn-eliminar" type="button" onclick="eliminarProducto(${indice})">Eliminar</button></td>
+      <td data-label="Acciones">
+        <button class="btn-eliminar" type="button" onclick="eliminarProducto(${indice})">Eliminar</button>
+      </td>
     `;
     tablaCarrito.appendChild(fila);
   });
