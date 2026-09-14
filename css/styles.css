@@ -1217,40 +1217,18 @@ footer p {
   }
 }
 
-/* Centrado del contenedor principal de los formularios */
-.contenedor-registro {
-  max-width: 550px;
-  margin: 40px auto;
-  padding: 30px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-}
-
-/* Alineación para etiquetas de texto e insumos del formulario */
-.contenedor-registro h2,
-.contenedor-registro .ayuda-formulario {
-  text-align: center;
-}
-
-/* Asegurar ancho completo en los controles del formulario */
-.grupo-campo input,
-.grupo-campo select,
-.grupo-campo textarea {
+/* Restablecer estilos globales del main para no romper Inicio y Productos */
+main {
+  display: block;
   width: 100%;
-  box-sizing: border-box;
 }
 
-/* Estilo para ajustar el textarea de contacto */
-.grupo-campo textarea {
-  resize: vertical;
-  min-height: 120px;
-}
-/* Centrado unificado para Registro, Login y Contacto */
+/* Centrado exclusivo para las páginas de Registro, Login y Contacto */
 .contenedor-registro,
 .contenedor-login,
-main section,
-.login-container {
+body:has(#form-login) main,
+body:has(#form-registro) main,
+body:has(#form-contacto) main {
   max-width: 550px;
   margin: 40px auto !important;
   padding: 30px;
@@ -1259,19 +1237,10 @@ main section,
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
-/* Centrar títulos y textos de ayuda */
+/* Centrar textos solo dentro de las tarjetas de formularios */
 .contenedor-registro h2,
 .contenedor-login h2,
-.contenedor-registro p,
+.contenedor-registro .ayuda-formulario,
 .contenedor-login p {
   text-align: center;
-}
-
-/* Asegurar que el contenedor principal de la página no empuje todo a la izquierda */
-main {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - 200px);
 }
