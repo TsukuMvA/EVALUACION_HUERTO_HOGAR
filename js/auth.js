@@ -1,7 +1,3 @@
-// Autenticación DEMO para un proyecto HTML5 sin backend.
-// Los usuarios se guardan en localStorage. Para producción se requiere un backend
-// con almacenamiento seguro, hash de contraseñas y sesiones/token.
-
 const CLAVE_USUARIOS = 'huertohogar_usuarios';
 const CLAVE_SESION = 'huertohogar_sesion';
 
@@ -19,7 +15,6 @@ function guardarUsuarios(usuarios) {
 
 async function hashPassword(password) {
   if (!window.crypto?.subtle) {
-    // Fallback solo para este prototipo local.
     return btoa(unescape(encodeURIComponent(password)));
   }
 
@@ -37,7 +32,6 @@ function mostrarMensaje(elemento, texto, tipo = 'error') {
 }
 
 function validarPasswordSegura(password) {
-  // Se requiere mínimo 8 caracteres
   return password && password.length >= 8;
 }
 
@@ -57,11 +51,9 @@ async function registrarUsuario(evento) {
   const region = regionElem ? regionElem.value : '';
   const comuna = comunaElem ? comunaElem.value : '';
   
-  // Direccion y teléfono se leen solo si existen en el HTML (opcionales)
   const direccion = document.getElementById('direccion')?.value.trim() || '';
   const telefono = document.getElementById('telefono')?.value.trim() || '';
 
-  // VALIDACIÓN: Se removieron 'direccion' y 'telefono' de la verificación obligatoria
   if (!nombre || !rut || !email || !password || !region || !comuna) {
     mostrarMensaje(mensaje, 'Completa todos los campos obligatorios.');
     return;
@@ -124,6 +116,22 @@ async function iniciarSesion(evento) {
     return;
   }
 
+  if (email === 'admin@huertohogar.cl' && password === 'Admin123') {
+    localStorage.setItem(CLAVE_SESION, JSON.stringify({
+      usuarioId: 'admin-001',
+      nombre: 'Administrador',
+      email: email,
+      esAdmin: true,
+      inicioSesion: new Date().toISOString()
+    }));
+
+    mostrarMensaje(mensaje, '¡Bienvenido Administrador!', 'exito');
+    setTimeout(() => {
+      window.location.href = 'admin.html';
+    }, 900);
+    return;
+  }
+
   const usuarios = obtenerUsuarios();
   const usuario = usuarios.find(item => item.email === email);
 
@@ -142,6 +150,7 @@ async function iniciarSesion(evento) {
     usuarioId: usuario.id,
     nombre: usuario.nombre,
     email: usuario.email,
+    esAdmin: false,
     inicioSesion: new Date().toISOString()
   }));
 
@@ -150,6 +159,35 @@ async function iniciarSesion(evento) {
   setTimeout(() => {
     window.location.href = 'index.html';
   }, 900);
+}
+
+function enviarContacto(evento) {
+  evento.preventDefault();
+
+  const nombre = document.getElementById('contacto-nombre')?.value.trim();
+  const email = document.getElementById('contacto-email')?.value.trim();
+  const asunto = document.getElementById('contacto-asunto')?.value.trim();
+  const mensajeTexto = document.getElementById('contacto-mensaje')?.value.trim();
+  const mensajeElemento = document.getElementById('mensaje-contacto');
+
+  if (!nombre || !email || !asunto || !mensajeTexto) {
+    mostrarMensaje(mensajeElemento, 'Completa todos los campos obligatorios.');
+    return;
+  }
+
+  const mensajes = JSON.parse(localStorage.getItem('huertohogar_contactos')) || [];
+  mensajes.push({
+    id: Date.now(),
+    nombre,
+    email,
+    asunto,
+    mensaje: mensajeTexto,
+    fecha: new Date().toISOString()
+  });
+  localStorage.setItem('huertohogar_contactos', JSON.stringify(mensajes));
+
+  evento.currentTarget.reset();
+  mostrarMensaje(mensajeElemento, '¡Mensaje enviado con éxito! Te responderemos pronto.', 'exito');
 }
 
 function guardarPerfil(evento) {
@@ -190,8 +228,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const formRegistro = document.getElementById('form-registro');
   const formLogin = document.getElementById('form-login');
   const formPerfil = document.getElementById('form-perfil');
+  const formContacto = document.getElementById('form-contacto');
 
   if (formRegistro) formRegistro.addEventListener('submit', registrarUsuario);
   if (formLogin) formLogin.addEventListener('submit', iniciarSesion);
   if (formPerfil) formPerfil.addEventListener('submit', guardarPerfil);
+  if (formContacto) formContacto.addEventListener('submit', enviarContacto);
+
+  const sesion = obtenerSesion();
+  const navPrincipal = document.querySelector('nav[aria-label="Navegación principal"]');
+
+  if (sesion && sesion.esAdmin && navPrincipal) {
+    if (!document.getElementById('nav-admin-link')) {
+      const adminLink = document.createElement('a');
+      adminLink.id = 'nav-admin-link';
+      adminLink.href = 'admin.html';
+      adminLink.textContent = '⚙️ Admin';
+      adminLink.style.fontWeight = 'bold';
+      adminLink.style.color = '#ffeb3b';
+
+      navPrincipal.appendChild(adminLink);
+    }
+  }
 });

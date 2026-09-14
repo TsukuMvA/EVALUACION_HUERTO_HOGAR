@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HuertoHogar - Panel de Administración</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Encabezado / Navegación -->
+  <header class="site-header">
+    <div class="contenedor nav-principal">
+      <a class="logo" href="index.html">🌱 <span>HuertoHogar (ADMIN)</span></a>
+      <nav aria-label="Navegación principal">
+        <a href="index.html">Ver Tienda</a>
+        <a href="admin.html" class="activo">Panel Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main class="contenedor" style="margin-top: 30px; margin-bottom: 40px;">
+    <h2>Panel de Administración</h2>
+    <p>Gestiona los productos del catálogo y revisa los mensajes recibidos.</p>
+
+    <!-- Sección Agregar Producto -->
+    <section class="contenedor-registro" style="max-width: 100%; margin-bottom: 40px;">
+      <h3>➕ Agregar Nuevo Producto</h3>
+      <div id="mensaje-admin" class="mensaje" role="alert"></div>
+
+      <form id="form-agregar-producto">
+        <div class="grupo-campo">
+          <label for="admin-nombre">Nombre del Producto:</label>
+          <input type="text" id="admin-nombre" placeholder="Ej: Lechuga Hidropónica" required>
+        </div>
+
+        <div class="grupo-campo">
+          <label for="admin-precio">Precio ($):</label>
+          <input type="number" id="admin-precio" placeholder="Ej: 1500" min="0" required>
+        </div>
+
+        <div class="grupo-campo">
+          <label for="admin-categoria">Categoría:</label>
+          <select id="admin-categoria" required>
+            <option value="">Seleccionar Categoría</option>
+            <option value="verduras">Verduras</option>
+            <option value="frutas">Frutas</option>
+            <option value="hierbas">Hierbas & Aromáticas</option>
+            <option value="macetas">Macetas & Kits</option>
+          </select>
+        </div>
+
+        <div class="grupo-campo">
+          <label for="admin-imagen">URL de la Imagen / Ruta:</label>
+          <input type="text" id="admin-imagen" placeholder="Ej: img/lechuga.jpg" required>
+        </div>
+
+        <button type="submit" class="btn-submit">Guardar Producto</button>
+      </form>
+    </section>
+
+    <!-- Sección Lista de Productos -->
+    <section style="margin-bottom: 40px;">
+      <h3>📦 Productos en Catálogo</h3>
+      <table style="width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <thead>
+          <tr style="background-color: #2e7d32; color: white; text-align: left;">
+            <th style="padding: 12px;">ID</th>
+            <th style="padding: 12px;">Nombre</th>
+            <th style="padding: 12px;">Precio</th>
+            <th style="padding: 12px;">Categoría</th>
+            <th style="padding: 12px; text-align: center;">Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tabla-productos">
+          <!-- Los productos se cargan dinámicamente -->
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Sección Mensajes de Contacto -->
+    <section>
+      <h3>📩 Mensajes de Contacto Recibidos</h3>
+      <div id="lista-mensajes" style="display: flex; flex-direction: column; gap: 15px;">
+        <!-- Los mensajes se cargan dinámicamente -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="contenedor">
+      <p>&copy; 2026 HuertoHogar - Panel de Control Administrador</p>
+    </div>
+  </footer>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
