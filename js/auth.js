@@ -37,10 +37,8 @@ function mostrarMensaje(elemento, texto, tipo = 'error') {
 }
 
 function validarPasswordSegura(password) {
-  return password.length >= 8 &&
-    /[A-Z]/.test(password) &&
-    /[a-z]/.test(password) &&
-    /[0-9]/.test(password);
+  // Se requiere mínimo 8 caracteres
+  return password && password.length >= 8;
 }
 
 async function registrarUsuario(evento) {
@@ -48,16 +46,23 @@ async function registrarUsuario(evento) {
 
   const form = evento.currentTarget;
   const mensaje = document.getElementById('mensaje-registro');
-  const nombre = document.getElementById('nombre').value.trim();
-  const rut = document.getElementById('rut').value.trim();
-  const email = document.getElementById('email').value.trim().toLowerCase();
-  const password = document.getElementById('password').value;
-  const region = document.getElementById('select-region').value;
-  const comuna = document.getElementById('select-comuna').value;
+  const nombre = document.getElementById('nombre')?.value.trim();
+  const rut = document.getElementById('rut')?.value.trim();
+  const email = document.getElementById('email')?.value.trim().toLowerCase();
+  const password = document.getElementById('password')?.value;
+  
+  const regionElem = document.getElementById('select-region') || document.getElementById('region');
+  const comunaElem = document.getElementById('select-comuna') || document.getElementById('comuna');
+  
+  const region = regionElem ? regionElem.value : '';
+  const comuna = comunaElem ? comunaElem.value : '';
+  
+  // Direccion y teléfono se leen solo si existen en el HTML (opcionales)
   const direccion = document.getElementById('direccion')?.value.trim() || '';
   const telefono = document.getElementById('telefono')?.value.trim() || '';
 
-  if (!nombre || !rut || !email || !password || !region || !comuna || !direccion || !telefono) {
+  // VALIDACIÓN: Se removieron 'direccion' y 'telefono' de la verificación obligatoria
+  if (!nombre || !rut || !email || !password || !region || !comuna) {
     mostrarMensaje(mensaje, 'Completa todos los campos obligatorios.');
     return;
   }
@@ -73,7 +78,7 @@ async function registrarUsuario(evento) {
   }
 
   if (!validarPasswordSegura(password)) {
-    mostrarMensaje(mensaje, 'La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número.');
+    mostrarMensaje(mensaje, 'La contraseña debe tener al menos 8 caracteres.');
     return;
   }
 
@@ -110,8 +115,8 @@ async function registrarUsuario(evento) {
 async function iniciarSesion(evento) {
   evento.preventDefault();
 
-  const email = document.getElementById('login-email').value.trim().toLowerCase();
-  const password = document.getElementById('login-password').value;
+  const email = document.getElementById('login-email')?.value.trim().toLowerCase();
+  const password = document.getElementById('login-password')?.value;
   const mensaje = document.getElementById('mensaje-login');
 
   if (!email || !password) {
@@ -147,7 +152,6 @@ async function iniciarSesion(evento) {
   }, 900);
 }
 
-
 function guardarPerfil(evento) {
   evento.preventDefault();
   const sesion = obtenerSesion();
@@ -155,12 +159,14 @@ function guardarPerfil(evento) {
   const usuarios = obtenerUsuarios();
   const usuario = usuarios.find(u => u.id === sesion.usuarioId);
   if (!usuario) return;
-  usuario.nombre = document.getElementById('perfil-nombre').value.trim();
-  usuario.email = document.getElementById('perfil-email').value.trim().toLowerCase();
-  usuario.direccion = document.getElementById('perfil-direccion').value.trim();
-  usuario.telefono = document.getElementById('perfil-telefono').value.trim();
-  usuario.region = document.getElementById('perfil-region').value;
-  usuario.comuna = document.getElementById('perfil-comuna').value;
+  
+  if (document.getElementById('perfil-nombre')) usuario.nombre = document.getElementById('perfil-nombre').value.trim();
+  if (document.getElementById('perfil-email')) usuario.email = document.getElementById('perfil-email').value.trim().toLowerCase();
+  if (document.getElementById('perfil-direccion')) usuario.direccion = document.getElementById('perfil-direccion').value.trim();
+  if (document.getElementById('perfil-telefono')) usuario.telefono = document.getElementById('perfil-telefono').value.trim();
+  if (document.getElementById('perfil-region')) usuario.region = document.getElementById('perfil-region').value;
+  if (document.getElementById('perfil-comuna')) usuario.comuna = document.getElementById('perfil-comuna').value;
+  
   guardarUsuarios(usuarios);
   localStorage.setItem(CLAVE_SESION, JSON.stringify({...sesion, nombre: usuario.nombre, email: usuario.email}));
   const mensaje = document.getElementById('mensaje-perfil');
@@ -183,7 +189,9 @@ function obtenerSesion() {
 document.addEventListener('DOMContentLoaded', () => {
   const formRegistro = document.getElementById('form-registro');
   const formLogin = document.getElementById('form-login');
+  const formPerfil = document.getElementById('form-perfil');
 
   if (formRegistro) formRegistro.addEventListener('submit', registrarUsuario);
   if (formLogin) formLogin.addEventListener('submit', iniciarSesion);
+  if (formPerfil) formPerfil.addEventListener('submit', guardarPerfil);
 });
