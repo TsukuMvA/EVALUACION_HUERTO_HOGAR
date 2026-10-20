@@ -1,0 +1,5 @@
+import { useEffect, useState } from 'react';
+import ProductCard from '../components/ProductCard.jsx';
+import { getProducts } from '../services/productService.js';
+import { useCart } from '../context/CartContext.jsx';
+export default function Offers(){const [products,setProducts]=useState([]);const [message,setMessage]=useState('');const [error,setError]=useState('');const {addProduct}=useCart();useEffect(()=>setProducts(getProducts().filter(p=>p.onOffer)),[]);function add(p){setMessage('');setError('');try{addProduct(p);setMessage(`${p.name} se agregó al carrito.`)}catch(e){setError(e.message)}}return <main className="container page-container"><h1 className="section-title">Ofertas</h1><p className="text-muted">Productos destacados de Huerto Hogar.</p>{message&&<div className="alert alert-success" role="status">{message}</div>}{error&&<div className="alert alert-danger" role="alert">{error}</div>}{products.length===0?<div className="alert alert-info">Actualmente no hay productos en oferta.</div>:<div className="row g-4">{products.map(p=><div className="col-sm-6 col-lg-4" key={p.id}><ProductCard product={p} onAddToCart={add}/></div>)}</div>}</main>}
